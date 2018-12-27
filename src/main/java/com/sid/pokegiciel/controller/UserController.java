@@ -1,4 +1,4 @@
-package com.sid.pokegiciel.web;
+package com.sid.pokegiciel.controller;
 
 import com.sid.pokegiciel.model.User;
 import com.sid.pokegiciel.service.SecurityService;
