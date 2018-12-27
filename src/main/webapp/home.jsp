@@ -69,7 +69,7 @@
     </c:if>
     <div>
         <h4>Ajouter un personnage</h4>
-        <form method="post" action="./add-caracter?${_csrf.parameterName}=${_csrf.token}">
+        <form method="post" action="/caracters/post?${_csrf.parameterName}=${_csrf.token}">
             <input name="name" placeholder="Nom du personnage">
             <button type="submit">Ajouter</button>
         </form>

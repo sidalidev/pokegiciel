@@ -61,9 +61,9 @@ public class UserController {
         return "login";
     }
 
-    @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
-    public String home(Model model) {
-        model.addAttribute("caracters", caracterRepository.findAll());
-        return "home";
-    }
+//    @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
+//    public String home(Model model) {
+//        model.addAttribute("caracters", caracterRepository.findAll());
+//        return "home";
+//    }
 }
