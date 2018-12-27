@@ -1,7 +1,7 @@
 package com.sid.pokegiciel.controller;
 
 import com.sid.pokegiciel.model.User;
-import com.sid.pokegiciel.service.CaracterService;
+import com.sid.pokegiciel.repository.CaracterRepository;
 import com.sid.pokegiciel.service.SecurityService;
 import com.sid.pokegiciel.service.UserService;
 import com.sid.pokegiciel.validator.UserValidator;
@@ -25,7 +25,8 @@ public class UserController {
     private UserValidator userValidator;
 
     @Autowired
-    private CaracterService caracterService;
+    private CaracterRepository caracterRepository;
+
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
@@ -62,7 +63,7 @@ public class UserController {
 
     @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
     public String home(Model model) {
-        model.addAttribute("caracters", caracterService.getCaracters());
+        model.addAttribute("caracters", caracterRepository.findAll());
         return "home";
     }
 }

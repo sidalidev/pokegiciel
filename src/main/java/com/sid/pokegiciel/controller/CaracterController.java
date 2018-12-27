@@ -1,7 +1,7 @@
 package com.sid.pokegiciel.controller;
 
 import com.sid.pokegiciel.model.Caracter;
-import com.sid.pokegiciel.service.CaracterService;
+import com.sid.pokegiciel.repository.CaracterRepository;
 import com.sid.pokegiciel.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,7 +17,7 @@ import java.util.List;
 @Controller
 public class CaracterController {
     @Autowired
-    private CaracterService caracterService;
+    private CaracterRepository caracterRepository;
 
     @Autowired
     private UserService userService;
@@ -25,7 +25,7 @@ public class CaracterController {
     @RequestMapping(value = "/caracters", method = RequestMethod.GET)
     @ResponseBody
     public List<Caracter> getCaracters() {
-        return caracterService.getCaracters();
+        return caracterRepository.findAll();
     }
 
     @RequestMapping(value = "/add-caracter", method = RequestMethod.POST)
@@ -40,7 +40,7 @@ public class CaracterController {
         Caracter caracter = new Caracter();
         caracter.setName(name);
         caracter.setUser(userService.findByUsername(username));
-        caracterService.addCaracter(caracter);
+        caracterRepository.save(caracter);
         return "redirect:/home";
     }
 }
