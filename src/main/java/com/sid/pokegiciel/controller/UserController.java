@@ -23,6 +23,7 @@ public class UserController {
     @Autowired
     private UserValidator userValidator;
 
+
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
         model.addAttribute("userForm", new User());
@@ -60,4 +61,6 @@ public class UserController {
     public String welcome(Model model) {
         return "welcome";
     }
+
+
 }

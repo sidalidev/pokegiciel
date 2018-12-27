@@ -35,6 +35,13 @@
             deconnecter</a></h2>
 
     </c:if>
+    <div>
+        <h4>Ajouter un personnage</h4>
+        <form action="/add-caracter">
+            <input name="name" placeholder="Nom du personnage">
+            <button type="submit">Ajouter</button>
+        </form>
+    </div>
 
 </div>
 <!-- /container -->
