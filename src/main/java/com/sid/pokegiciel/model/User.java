@@ -4,12 +4,14 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "USERS")
+@Table(name = "users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(unique = true)
     private String username;
 
     private String password;
@@ -20,9 +22,6 @@ public class User {
     @ManyToMany
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
-
-    @OneToMany(mappedBy = "user")
-    private Set<Caracter> caracters;
 
 
     public Long getId() {
@@ -64,14 +63,5 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
-    }
-
-
-    public Set<Caracter> getCaracters() {
-        return caracters;
-    }
-
-    public void setCaracters(Set<Caracter> caracters) {
-        this.caracters = caracters;
     }
 }
