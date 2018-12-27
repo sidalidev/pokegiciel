@@ -65,5 +65,4 @@ public class UserController {
         model.addAttribute("caracters", caracterService.getCaracters());
         return "home";
     }
-
 }

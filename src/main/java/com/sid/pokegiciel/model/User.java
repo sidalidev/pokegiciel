@@ -4,16 +4,27 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "user")
+@Table(name = "USERS")
 public class User {
-    private Long id;
-    private String username;
-    private String password;
-    private String passwordConfirm;
-    private Set<Role> roles;
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    private String username;
+
+    private String password;
+
+    @Transient
+    private String passwordConfirm;
+
+    @ManyToMany
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Caracter> caracters;
+
+
     public Long getId() {
         return id;
     }
@@ -38,7 +49,7 @@ public class User {
         this.password = password;
     }
 
-    @Transient
+
     public String getPasswordConfirm() {
         return passwordConfirm;
     }
@@ -47,13 +58,20 @@ public class User {
         this.passwordConfirm = passwordConfirm;
     }
 
-    @ManyToMany
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     public Set<Role> getRoles() {
         return roles;
     }
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+
+    public Set<Caracter> getCaracters() {
+        return caracters;
+    }
+
+    public void setCaracters(Set<Caracter> caracters) {
+        this.caracters = caracters;
     }
 }
