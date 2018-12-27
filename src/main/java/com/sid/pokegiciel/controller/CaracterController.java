@@ -23,11 +23,10 @@ public class CaracterController {
     }
 
     @RequestMapping(value = "/add-caracter", method = RequestMethod.POST)
-    @ResponseBody
-    public Caracter addCaracter(@RequestParam("name") String name) {
+    public String addCaracter(@RequestParam("name") String name) {
         Caracter caracter = new Caracter();
         caracter.setName(name);
         caracterService.addCaracter(caracter);
-        return caracter;
+        return "redirect:/home";
     }
 }

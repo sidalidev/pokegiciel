@@ -45,6 +45,7 @@
             <h4 class="text-center"><a href="${contextPath}/registration">S'inscrire</a></h4>
         </div>
 
+
     </form>
 
 </div>

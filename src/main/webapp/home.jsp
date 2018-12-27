@@ -13,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Create an account</title>
+    <title>Accueil</title>
 
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
 
@@ -25,6 +25,7 @@
 </head>
 <body>
 <div class="container">
+    <h1>Accueil</h1>
 
     <c:if test="${pageContext.request.userPrincipal.name != null}">
         <form id="logoutForm" method="POST" action="${contextPath}/logout">
@@ -41,6 +42,15 @@
             <input name="name" placeholder="Nom du personnage">
             <button type="submit">Ajouter</button>
         </form>
+    </div>
+
+    <div>
+        <h4>Liste des personnages</h4>
+        <ul>
+            <c:forEach items="${caracters}" var="caracter">
+                <li>${caracter.name}</li>
+            </c:forEach>
+        </ul>
     </div>
 
 </div>
