@@ -9,11 +9,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.annotation.PostConstruct;
+
 @Controller
 public class LeagueController {
-
     @Autowired
     LeagueRepository leagueRepository;
+
+    @PostConstruct
+    private void postConstruct() {
+        League newLeague = new League();
+        newLeague.setName("Ligue 1");
+        leagueRepository.save(newLeague);
+
+        League newLeague2 = new League();
+        newLeague2.setName("Ligue 2");
+        leagueRepository.save(newLeague2);
+
+        League newLeague3 = new League();
+        newLeague3.setName("Ligue 3");
+        leagueRepository.save(newLeague3);
+    }
 
     @RequestMapping(value = "/leagues")
     public String getLeaguesPage(Model model) {
