@@ -27,9 +27,50 @@
 </head>
 
 <body>
-
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Pokegiciel</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="${contextPath}/home">Personages</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="${contextPath}/leagues">Ligues<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="${contextPath}/fights-history">Historique</a>
+            </li>
+            <li class="nav-item">
+                <form id="logoutForm" method="POST" action="${contextPath}/logout">
+                    <input style="cursor: pointer;" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    <a class="nav-link" onclick="document.forms['logoutForm'].submit()">Deconnexion</a>
+                </form>
+            </li>
+        </ul>
+    </div>
+</nav>
 <div class="container">
-    <h1>Ligues</h1>
+    <h2>Ligues</h2>
+    <div>
+        <h4>Ajouter une ligue</h4>
+        <form method="post" action="${contextPath}/leagues/post?${_csrf.parameterName}=${_csrf.token}">
+            <input name="name" placeholder="Nom de la ligue">
+            <button type="submit">Ajouter</button>
+        </form>
+    </div>
+
+    <div>
+        <h4>Liste des ligues</h4>
+        <ul>
+            <c:forEach items="${leagues}" var="league">
+                <li>${league.name}</li>
+            </c:forEach>
+        </ul>
+    </div>
 
 </div>
 <!-- /container -->

@@ -1,7 +1,6 @@
 package com.sid.pokegiciel.controller;
 
 import com.sid.pokegiciel.model.User;
-import com.sid.pokegiciel.repository.CaracterRepository;
 import com.sid.pokegiciel.service.SecurityService;
 import com.sid.pokegiciel.service.UserService;
 import com.sid.pokegiciel.validator.UserValidator;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class UserController {
+public class AuthenticationController {
     @Autowired
     private UserService userService;
 
@@ -23,9 +22,6 @@ public class UserController {
 
     @Autowired
     private UserValidator userValidator;
-
-    @Autowired
-    private CaracterRepository caracterRepository;
 
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
@@ -60,10 +56,4 @@ public class UserController {
 
         return "login";
     }
-
-//    @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
-//    public String home(Model model) {
-//        model.addAttribute("caracters", caracterRepository.findAll());
-//        return "home";
-//    }
 }
