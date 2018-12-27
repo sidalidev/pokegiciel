@@ -9,18 +9,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 @Controller
 public class CaracterController {
     @Autowired
     private CaracterService caracterService;
 
-    @RequestMapping(value = "/add-caracter", method = RequestMethod.GET)
+    @RequestMapping(value = "/caracters", method = RequestMethod.GET)
     @ResponseBody
-    public String addCaracter(@RequestParam("name") String name) {
+    public List<Caracter> getCaracters() {
+        return caracterService.getCaracters();
+    }
+
+    @RequestMapping(value = "/add-caracter", method = RequestMethod.POST)
+    @ResponseBody
+    public Caracter addCaracter(@RequestParam("name") String name) {
         Caracter caracter = new Caracter();
         caracter.setName(name);
-        caracterService.save(caracter);
-
-        return caracter.getName();
+        caracterService.addCaracter(caracter);
+        return caracter;
     }
 }

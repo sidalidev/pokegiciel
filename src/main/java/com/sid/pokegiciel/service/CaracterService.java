@@ -5,13 +5,19 @@ import com.sid.pokegiciel.repository.CaracterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CaracterService {
 
     @Autowired
     private CaracterRepository caracterRepository;
 
-    public void save(Caracter caracter) {
+    public void addCaracter(Caracter caracter) {
         caracterRepository.saveAndFlush(caracter);
+    }
+
+    public List<Caracter> getCaracters() {
+        return caracterRepository.findAll();
     }
 }
