@@ -54,7 +54,7 @@
 <div class="container">
     <h2>Accueil</h2>
     <c:if test="${pageContext.request.userPrincipal.name != null}">
-        <h2>Bienvenue ${pageContext.request.userPrincipal.name}</h2>
+        <h2>Bienvenue <em class="text-info">${pageContext.request.userPrincipal.name}</em></h2>
     </c:if>
     <h3>Points: ${points}</h3>
     <div class="container">
