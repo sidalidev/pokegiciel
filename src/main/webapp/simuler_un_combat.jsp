@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Historique des combats</title>
+    <title>Combat</title>
 
     <link href="${contextPath}/resources/style/bulma.min.css" rel="stylesheet">
 
@@ -26,35 +26,29 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Pokegiciel</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="${contextPath}/accueil">Personages</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="${contextPath}/ligues">Ligues<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="${contextPath}/combat/history">Historique</a>
-            </li>
-            <li class="nav-item">
-                <form id="logoutForm" method="POST" action="${contextPath}/logout">
-                    <input style="cursor: pointer;" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                    <a class="nav-link" onclick="document.forms['logoutForm'].submit()">Deconnexion</a>
-                </form>
-            </li>
-        </ul>
-    </div>
-</nav>
-<div class="container">
-    <h2><em>${caracter} VS ${opponent}</em></h2>
-    <h4>Le gagnant est <em>${winner}</em>.</h4>
-</div>
+<ul>
+    <li>
+        <a class="nav-link" href="${contextPath}/accueil">Personages</a>
+    </li>
+    <li>
+        <a class="nav-link" href="${contextPath}/ligues">Ligues</a>
+    </li>
+    <li>
+        <a class="nav-link" href="${contextPath}/combat/history">Historique</a>
+    </li>
+    <li>
+        <a class="nav-link" href="${contextPath}/ajouter_un_personage">Ajouter un personage</a>
+    </li>
+    <li>
+        <form id="logoutForm" method="POST" action="${contextPath}/logout">
+            <input style="cursor: pointer;" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            <a class="nav-link" onclick="document.forms['logoutForm'].submit()">Deconnexion</a>
+        </form>
+    </li>
+</ul>
+<section>
+    <h2 class="title">${caracter} VS ${opponent}</h2>
+    <h4 class="subtitle">Le gagnant est <strong>${winner}</strong>.</h4>
+</section>
 </body>
 </html>

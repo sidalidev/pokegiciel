@@ -34,13 +34,16 @@
         <a class="nav-link" href="${contextPath}/combat/history">Historique</a>
     </li>
     <li>
+        <a class="nav-link" href="${contextPath}/ajouter_un_personage">Ajouter un personage</a>
+    </li>
+    <li>
         <form id="logoutForm" method="POST" action="${contextPath}/logout">
             <input style="cursor: pointer;" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <a class="nav-link" onclick="document.forms['logoutForm'].submit()">Deconnexion</a>
         </form>
     </li>
 </ul>
-<div class="container">
+<section>
     <h2>Edition d'un personage</h2>
     <form method="post" modelAttribute="caracterForm"
           action="/caracter/put?${_csrf.parameterName}=${_csrf.token}">
@@ -58,6 +61,6 @@
     </form>
 
 
-</div>
+</section>
 </body>
 </html>

@@ -46,7 +46,7 @@
         </form>
     </li>
 </ul>
-<div class="container">
+<section>
     <h2>Combat <em>VS ${opponent.name}</em></h2>
     <p>Selectionner votre champion:</p>
     <ul class="list-group">
@@ -58,6 +58,6 @@
         </c:forEach>
     </ul>
 
-</div>
+</section>
 </body>
 </html>
