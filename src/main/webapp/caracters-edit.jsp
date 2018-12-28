@@ -56,12 +56,15 @@
     <form method="post" modelAttribute="caracterForm"
           action="/caracter/put?${_csrf.parameterName}=${_csrf.token}">
         <input class="form-control" value="${caracter.id}" type="hidden" name="id" placeholder="Nom du personnage">
-        <input class="form-control" value="${caracter.name}" name="name" placeholder="Nom du personnage">
+        <input class="form-control" type="text" required value="${caracter.name}" name="name"
+               placeholder="Nom du personnage">
+        <input class="form-control" type="number" required value="${caracter.points}" name="points"
+               placeholder="Points attribues">
         <button type="submit" class="btn btn-info">Modifier</button>
     </form>
     <form method="post" modelAttribute="caracterForm"
           action="/caracter/delete?${_csrf.parameterName}=${_csrf.token}">
-        <input class="form-control" value="${caracter.id}" type="hidden" name="id" placeholder="Nom du personnage">
+        <input value="${caracter.id}" type="hidden" name="id">
         <button type="submit" class="btn btn-danger">Supprimer</button>
     </form>
 

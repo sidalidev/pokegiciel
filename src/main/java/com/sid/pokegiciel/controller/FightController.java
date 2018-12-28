@@ -1,5 +1,6 @@
 package com.sid.pokegiciel.controller;
 
+import com.sid.pokegiciel.model.Caracter;
 import com.sid.pokegiciel.model.Fight;
 import com.sid.pokegiciel.repository.CaracterRepository;
 import com.sid.pokegiciel.repository.FightRepository;
@@ -30,13 +31,23 @@ public class FightController {
     @RequestMapping(value = "/fight/simulation", method = RequestMethod.GET)
     public String fightSumulation(Model model, @RequestParam("caracterId") Long caracterId, @RequestParam("opponentId") Long opponentId) {
         Fight fight = new Fight();
-        fight.setOpponentOne(caracterRepository.findById(opponentId).getName());
-        fight.setOpponentTwo(caracterRepository.findById(caracterId).getName());
-        fight.setWinner(caracterRepository.findById(caracterId).getName());
+        final Caracter opponentOne = caracterRepository.findById(opponentId);
+        final Caracter opponentTwo = caracterRepository.findById(caracterId);
+        final Caracter winner;
+        if (opponentOne.getPoints() > opponentTwo.getPoints()) {
+            winner = opponentOne;
+        } else {
+            winner = opponentTwo;
+        }
+        
+        fight.setOpponentOne(opponentOne.getName());
+        fight.setOpponentTwo(opponentTwo.getName());
+        fight.setWinner(winner.getName());
 
         model.addAttribute("opponent", fight.getOpponentOne());
         model.addAttribute("caracter", fight.getOpponentTwo());
         model.addAttribute("winner", fight.getWinner());
+
         fightRepository.save(fight);
         return "fight-simulation";
     }

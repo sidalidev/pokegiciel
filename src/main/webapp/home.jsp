@@ -60,7 +60,8 @@
     <div class="container">
         <h4>Ajouter un personnage</h4>
         <form method="post" action="/caracters/post?${_csrf.parameterName}=${_csrf.token}">
-            <input class="form-control" name="name" placeholder="Nom du personnage">
+            <input class="form-control" type="text" required name="name" placeholder="Nom du personnage">
+            <input class="form-control" type="number" required name="points" placeholder="Points attribues">
             <button type="submit" class="btn btn-success">Ajouter</button>
         </form>
     </div>
@@ -70,6 +71,7 @@
         <ul class="list-group">
             <c:forEach items="${caracters}" var="caracter">
                 <li class="list-group-item">${caracter.name}
+                    <em>Points: ${caracter.points}</em>
                     <a class="btn btn-info" href="/caracters/edit?caracterId=${caracter.id}">Modifier</a>
                 </li>
             </c:forEach>
