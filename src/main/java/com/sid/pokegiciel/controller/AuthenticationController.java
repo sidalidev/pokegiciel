@@ -1,11 +1,13 @@
 package com.sid.pokegiciel.controller;
 
 import com.sid.pokegiciel.model.User;
-import com.sid.pokegiciel.service.CaracterService;
+import com.sid.pokegiciel.repository.LeagueRepository;
 import com.sid.pokegiciel.service.SecurityService;
 import com.sid.pokegiciel.service.UserService;
 import com.sid.pokegiciel.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class UserController {
+public class AuthenticationController {
     @Autowired
     private UserService userService;
 
@@ -25,7 +27,16 @@ public class UserController {
     private UserValidator userValidator;
 
     @Autowired
-    private CaracterService caracterService;
+    private LeagueRepository leagueRepository;
+
+
+    public static String getCurrentUsername() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            return ((UserDetails) principal).getUsername();
+        }
+        return principal.toString();
+    }
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
@@ -42,10 +53,11 @@ public class UserController {
             return "registration";
         }
 
+        userForm.setLeague(leagueRepository.findAll().get(0));
+        userForm.setPoints(10000);
         userService.save(userForm);
 
         securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
-
         return "redirect:/home";
     }
 
@@ -58,11 +70,5 @@ public class UserController {
             model.addAttribute("message", "Deconnecte.");
 
         return "login";
-    }
-
-    @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
-    public String home(Model model) {
-        model.addAttribute("caracters", caracterService.getCaracters());
-        return "home";
     }
 }

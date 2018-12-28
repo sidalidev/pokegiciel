@@ -1,16 +1,24 @@
 package com.sid.pokegiciel.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "USERS")
+@Table(name = "users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column
     private String username;
+
+    private int points;
 
     private String password;
 
@@ -21,9 +29,19 @@ public class User {
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    @OneToMany(mappedBy = "user")
-    private Set<Caracter> caracters;
+    public League getLeague() {
+        return league;
+    }
 
+    public void setLeague(League league) {
+        this.league = league;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "league_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private League league;
 
     public Long getId() {
         return id;
@@ -41,6 +59,14 @@ public class User {
         this.username = username;
     }
 
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -48,7 +74,6 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
 
     public String getPasswordConfirm() {
         return passwordConfirm;
@@ -64,14 +89,5 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
-    }
-
-
-    public Set<Caracter> getCaracters() {
-        return caracters;
-    }
-
-    public void setCaracters(Set<Caracter> caracters) {
-        this.caracters = caracters;
     }
 }

@@ -29,10 +29,19 @@
 <body>
 
 <div class="container">
-    <h1>Historique des combats</h1>
+    <h2>Historique des combats</h2>
+    <ul class="list-group">
+        <c:forEach items="${fights}" var="fight">
+            <li class="list-group-item">
+                <em>${fight.opponentOne} VS ${fight.opponentOne}</em>
+                <span>Gagnant: ${fight.winner}</span>
+            </li>
+        </c:forEach>
+    </ul>
 </div>
 <!-- /container -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="${contextPath}/resources/js/jquery.min.js"></script>
+<script src="${contextPath}/resources/js/popper.min.js"></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </body>
 </html>

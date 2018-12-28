@@ -2,13 +2,13 @@ package com.sid.pokegiciel.repository;
 
 import com.sid.pokegiciel.model.Caracter;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface CaracterRepository extends JpaRepository<Caracter, Long> {
-    @Override
-    <S extends Caracter> S saveAndFlush(S s);
 
-    @Override
-    List<Caracter> findAll();
+@Repository
+public interface CaracterRepository extends JpaRepository<Caracter, Long> {
+    List<Caracter> findAllByUser_Username(String username);
+    Caracter findById(Long id);
 }

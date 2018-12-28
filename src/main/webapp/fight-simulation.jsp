@@ -1,5 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
@@ -10,10 +11,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="Home">
+    <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Accueil</title>
+    <title>Historique des combats</title>
 
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
@@ -24,6 +25,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
+
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Pokegiciel</a>
@@ -33,11 +35,11 @@
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
         <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="${contextPath}/home">Personages<span class="sr-only">(current)</span></a>
-            </li>
             <li class="nav-item">
-                <a class="nav-link" href="${contextPath}/leagues">Ligues</a>
+                <a class="nav-link" href="${contextPath}/home">Personages</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="${contextPath}/leagues">Ligues<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="${contextPath}/fight/history">Historique</a>
@@ -52,32 +54,8 @@
     </div>
 </nav>
 <div class="container">
-    <h2>Accueil</h2>
-    <c:if test="${pageContext.request.userPrincipal.name != null}">
-        <h2>Bienvenue <em class="text-info">${pageContext.request.userPrincipal.name}</em></h2>
-    </c:if>
-    <h3>Points: ${points}</h3>
-    <div class="container">
-        <h4>Ajouter un personnage</h4>
-        <form method="post" action="/caracters/post?${_csrf.parameterName}=${_csrf.token}">
-            <input class="form-control" type="text" required name="name" placeholder="Nom du personnage">
-            <input class="form-control" type="number" required name="points" placeholder="Points attribues">
-            <button type="submit" class="btn btn-success">Ajouter</button>
-        </form>
-    </div>
-
-    <div class="container">
-        <h4>Liste des personnages</h4>
-        <ul class="list-group">
-            <c:forEach items="${caracters}" var="caracter">
-                <li class="list-group-item">${caracter.name}
-                    <em>Points: ${caracter.points}</em>
-                    <a class="btn btn-info" href="/caracters/edit?caracterId=${caracter.id}">Modifier</a>
-                </li>
-            </c:forEach>
-        </ul>
-    </div>
-
+    <h2><em>${caracter} VS ${opponent}</em></h2>
+    <h4>Le gagnant est <em>${winner}</em>.</h4>
 </div>
 <!-- /container -->
 <script src="${contextPath}/resources/js/jquery.min.js"></script>

@@ -1,22 +1,16 @@
 package com.sid.pokegiciel.model;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
-@Table(name = "roles")
-public class Role {
-
+@Table(name = "leagues")
+public class League {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column
     private String name;
-
-    @ManyToMany(mappedBy = "roles")
-    private Set<User> users;
-
 
     public Long getId() {
         return id;
@@ -32,14 +26,5 @@ public class Role {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
     }
 }
