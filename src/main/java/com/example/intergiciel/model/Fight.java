@@ -1,4 +1,4 @@
-package com.sid.pokegiciel.model;
+package com.example.intergiciel.model;
 
 
 import javax.persistence.*;

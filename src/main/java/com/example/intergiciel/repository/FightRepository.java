@@ -1,6 +1,6 @@
-package com.sid.pokegiciel.repository;
+package com.example.intergiciel.repository;
 
-import com.sid.pokegiciel.model.Fight;
+import com.example.intergiciel.model.Fight;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

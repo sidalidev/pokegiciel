@@ -1,4 +1,4 @@
-package com.sid.pokegiciel.service;
+package com.example.intergiciel.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,17 +1,15 @@
-package com.sid.pokegiciel.controller;
+package com.example.intergiciel.controller;
 
-import com.sid.pokegiciel.model.Caracter;
-import com.sid.pokegiciel.model.Fight;
-import com.sid.pokegiciel.repository.CaracterRepository;
-import com.sid.pokegiciel.repository.FightRepository;
+import com.example.intergiciel.model.Caracter;
+import com.example.intergiciel.model.Fight;
+import com.example.intergiciel.repository.CaracterRepository;
+import com.example.intergiciel.repository.FightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import static com.sid.pokegiciel.controller.AuthenticationController.getCurrentUsername;
 
 @Controller
 public class FightController {
@@ -24,7 +22,7 @@ public class FightController {
     @RequestMapping(value = "/fight", method = RequestMethod.GET)
     public String fight(Model model, @RequestParam("opponentId") Long opponentId) {
         model.addAttribute("opponent", caracterRepository.findById(opponentId));
-        model.addAttribute("caracters", caracterRepository.findAllByUser_Username(getCurrentUsername()));
+        model.addAttribute("caracters", caracterRepository.findAllByUser_Username(AuthenticationController.getCurrentUsername()));
         return "fight";
     }
 
@@ -39,7 +37,7 @@ public class FightController {
         } else {
             winner = opponentTwo;
         }
-        
+
         fight.setOpponentOne(opponentOne.getName());
         fight.setOpponentTwo(opponentTwo.getName());
         fight.setWinner(winner.getName());

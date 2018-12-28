@@ -1,11 +1,11 @@
-package com.sid.pokegiciel.controller;
+package com.example.intergiciel.controller;
 
-import com.sid.pokegiciel.model.Caracter;
-import com.sid.pokegiciel.model.League;
-import com.sid.pokegiciel.model.User;
-import com.sid.pokegiciel.repository.CaracterRepository;
-import com.sid.pokegiciel.repository.LeagueRepository;
-import com.sid.pokegiciel.repository.UserRepository;
+import com.example.intergiciel.model.Caracter;
+import com.example.intergiciel.model.League;
+import com.example.intergiciel.model.User;
+import com.example.intergiciel.repository.CaracterRepository;
+import com.example.intergiciel.repository.LeagueRepository;
+import com.example.intergiciel.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.sid.pokegiciel.controller.AuthenticationController.getCurrentUsername;
 
 @Controller
 public class LeagueController {
@@ -47,13 +45,13 @@ public class LeagueController {
 
     @RequestMapping(value = "/leagues")
     public String getLeaguesPage(Model model) {
-        final League userLeague = userRepository.findByUsername(getCurrentUsername()).getLeague();
+        final League userLeague = userRepository.findByUsername(AuthenticationController.getCurrentUsername()).getLeague();
         final List<User> leagueUsers = userRepository.findAllByLeague_Id(userLeague.getId());
 
         List<Caracter> caracters = new ArrayList<>();
         List<User> leagueUsersWithoutMe = new ArrayList<>();
         for (User user : leagueUsers) {
-            if (user.getUsername() != getCurrentUsername()){
+            if (user.getUsername() != AuthenticationController.getCurrentUsername()) {
                 leagueUsersWithoutMe.add(user);
             }
         }
@@ -82,7 +80,7 @@ public class LeagueController {
 
     @RequestMapping(value = "/leagues/put", method = RequestMethod.POST)
     public String putLeague(@RequestParam("id") Long id) {
-        final User user = userRepository.findByUsername(getCurrentUsername());
+        final User user = userRepository.findByUsername(AuthenticationController.getCurrentUsername());
         final League league = leagueRepository.findById(id);
         user.setLeague(league);
         userRepository.save(user);

@@ -1,8 +1,8 @@
-package com.sid.pokegiciel.service;
+package com.example.intergiciel.service;
 
-import com.sid.pokegiciel.model.Role;
-import com.sid.pokegiciel.model.User;
-import com.sid.pokegiciel.repository.UserRepository;
+import com.example.intergiciel.model.Role;
+import com.example.intergiciel.model.User;
+import com.example.intergiciel.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

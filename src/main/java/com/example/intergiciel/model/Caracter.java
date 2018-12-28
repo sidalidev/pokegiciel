@@ -1,4 +1,4 @@
-package com.sid.pokegiciel.model;
+package com.example.intergiciel.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;

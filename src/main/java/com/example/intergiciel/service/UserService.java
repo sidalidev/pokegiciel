@@ -1,6 +1,6 @@
-package com.sid.pokegiciel.service;
+package com.example.intergiciel.service;
 
-import com.sid.pokegiciel.model.User;
+import com.example.intergiciel.model.User;
 
 public interface UserService {
     void save(User user);

@@ -1,4 +1,4 @@
-package com.sid.pokegiciel;
+package com.example.intergiciel;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

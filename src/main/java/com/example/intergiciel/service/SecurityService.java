@@ -1,4 +1,4 @@
-package com.sid.pokegiciel.service;
+package com.example.intergiciel.service;
 
 public interface SecurityService {
     String findLoggedInUsername();

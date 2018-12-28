@@ -1,8 +1,8 @@
-package com.sid.pokegiciel.service;
+package com.example.intergiciel.service;
 
-import com.sid.pokegiciel.model.User;
-import com.sid.pokegiciel.repository.RoleRepository;
-import com.sid.pokegiciel.repository.UserRepository;
+import com.example.intergiciel.model.User;
+import com.example.intergiciel.repository.RoleRepository;
+import com.example.intergiciel.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

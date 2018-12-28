@@ -1,4 +1,4 @@
-package com.sid.pokegiciel;
+package com.example.intergiciel;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

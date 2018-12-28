@@ -1,10 +1,10 @@
-package com.sid.pokegiciel.controller;
+package com.example.intergiciel.controller;
 
-import com.sid.pokegiciel.model.User;
-import com.sid.pokegiciel.repository.LeagueRepository;
-import com.sid.pokegiciel.service.SecurityService;
-import com.sid.pokegiciel.service.UserService;
-import com.sid.pokegiciel.validator.UserValidator;
+import com.example.intergiciel.model.User;
+import com.example.intergiciel.repository.LeagueRepository;
+import com.example.intergiciel.service.SecurityService;
+import com.example.intergiciel.service.UserService;
+import com.example.intergiciel.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;

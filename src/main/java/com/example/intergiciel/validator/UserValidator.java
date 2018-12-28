@@ -1,7 +1,7 @@
-package com.sid.pokegiciel.validator;
+package com.example.intergiciel.validator;
 
-import com.sid.pokegiciel.model.User;
-import com.sid.pokegiciel.service.UserService;
+import com.example.intergiciel.model.User;
+import com.example.intergiciel.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
