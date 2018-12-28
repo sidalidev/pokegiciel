@@ -54,7 +54,7 @@
     </div>
 </nav>
 <div class="container">
-    <h2>Ligues</h2>
+    <h2>Ligues (Ligue courante: ${userLeague})</h2>
     <div>
         <h4>Ajouter une ligue</h4>
         <form method="post" action="${contextPath}/leagues/post?${_csrf.parameterName}=${_csrf.token}">

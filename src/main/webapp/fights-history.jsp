@@ -29,7 +29,7 @@
 <body>
 
 <div class="container">
-    <h1>Historique des combats</h1>
+    <h2>Historique des combats</h2>
 </div>
 <!-- /container -->
 <script src="${contextPath}/resources/js/jquery.min.js"></script>

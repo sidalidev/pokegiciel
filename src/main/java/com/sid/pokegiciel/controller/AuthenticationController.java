@@ -1,10 +1,13 @@
 package com.sid.pokegiciel.controller;
 
 import com.sid.pokegiciel.model.User;
+import com.sid.pokegiciel.repository.LeagueRepository;
 import com.sid.pokegiciel.service.SecurityService;
 import com.sid.pokegiciel.service.UserService;
 import com.sid.pokegiciel.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,6 +26,17 @@ public class AuthenticationController {
     @Autowired
     private UserValidator userValidator;
 
+    @Autowired
+    private LeagueRepository leagueRepository;
+
+
+    public static String getCurrentUsername() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            return ((UserDetails) principal).getUsername();
+        }
+        return principal.toString();
+    }
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
@@ -39,6 +53,8 @@ public class AuthenticationController {
             return "registration";
         }
 
+        // Make him belong to the first League
+        userForm.setLeague(leagueRepository.findAll().get(0));
         userService.save(userForm);
 
         securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
