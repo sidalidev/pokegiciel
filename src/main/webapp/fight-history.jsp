@@ -30,6 +30,14 @@
 
 <div class="container">
     <h2>Historique des combats</h2>
+    <ul class="list-group">
+        <c:forEach items="${fights}" var="fight">
+            <li class="list-group-item">
+                <em>${fight.opponentOne} VS ${fight.opponentOne}</em>
+                <span>Gagnant: ${fight.winner}</span>
+            </li>
+        </c:forEach>
+    </ul>
 </div>
 <!-- /container -->
 <script src="${contextPath}/resources/js/jquery.min.js"></script>

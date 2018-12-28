@@ -42,7 +42,7 @@
                 <a class="nav-link" href="${contextPath}/leagues">Ligues<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="${contextPath}/fight-history">Historique</a>
+                <a class="nav-link" href="${contextPath}/fight/history">Historique</a>
             </li>
             <li class="nav-item">
                 <form id="logoutForm" method="POST" action="${contextPath}/logout">
@@ -54,8 +54,8 @@
     </div>
 </nav>
 <div class="container">
-    <h2><em>${caracter.name} VS ${opponent.name}</em></h2>
-    <h4>Le gagnant est <em>${winner.name}</em>.</h4>
+    <h2><em>${caracter} VS ${opponent}</em></h2>
+    <h4>Le gagnant est <em>${winner}</em>.</h4>
 </div>
 <!-- /container -->
 <script src="${contextPath}/resources/js/jquery.min.js"></script>
