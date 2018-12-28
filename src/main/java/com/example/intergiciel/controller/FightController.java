@@ -1,5 +1,6 @@
 package com.example.intergiciel.controller;
 
+import com.example.intergiciel.auth.controller.AuthenticationController;
 import com.example.intergiciel.entity.CombatEntity;
 import com.example.intergiciel.entity.PersonageEntity;
 import com.example.intergiciel.repository.CaracterRepository;

@@ -1,4 +1,4 @@
-package com.example.intergiciel.entity;
+package com.example.intergiciel.auth.entity;
 
 import javax.persistence.*;
 import java.util.Set;

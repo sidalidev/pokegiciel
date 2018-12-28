@@ -1,9 +1,9 @@
-package com.example.intergiciel.controller;
+package com.example.intergiciel.auth.controller;
 
+import com.example.intergiciel.auth.entity.User;
 import com.example.intergiciel.auth.service.SecurityService;
 import com.example.intergiciel.auth.service.UserService;
 import com.example.intergiciel.auth.validator.UserValidator;
-import com.example.intergiciel.entity.User;
 import com.example.intergiciel.repository.LeagueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;

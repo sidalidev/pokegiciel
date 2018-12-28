@@ -1,5 +1,6 @@
-package com.example.intergiciel.entity;
+package com.example.intergiciel.auth.entity;
 
+import com.example.intergiciel.entity.LigueEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;

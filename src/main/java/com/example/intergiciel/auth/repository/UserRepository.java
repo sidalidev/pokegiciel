@@ -1,6 +1,6 @@
-package com.example.intergiciel.repository;
+package com.example.intergiciel.auth.repository;
 
-import com.example.intergiciel.entity.User;
+import com.example.intergiciel.auth.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

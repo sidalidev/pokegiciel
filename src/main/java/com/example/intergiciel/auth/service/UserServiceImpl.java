@@ -1,8 +1,8 @@
 package com.example.intergiciel.auth.service;
 
-import com.example.intergiciel.entity.User;
-import com.example.intergiciel.repository.RoleRepository;
-import com.example.intergiciel.repository.UserRepository;
+import com.example.intergiciel.auth.entity.User;
+import com.example.intergiciel.auth.repository.RoleRepository;
+import com.example.intergiciel.auth.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
