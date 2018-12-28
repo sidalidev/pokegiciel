@@ -84,9 +84,21 @@
                 <c:if test="${user.username != pageContext.request.userPrincipal.name}">
                     <li>
                             ${user.username}
-                        
+
                     </li>
                 </c:if>
+            </c:forEach>
+        </ul>
+    </div>
+
+    <div>
+        <h4>Liste des Personages de la ${userLeague.name}</h4>
+        <ul>
+            <c:forEach items="${caracters}" var="caracter">
+                <li>
+                        ${caracter.name}
+
+                </li>
             </c:forEach>
         </ul>
     </div>

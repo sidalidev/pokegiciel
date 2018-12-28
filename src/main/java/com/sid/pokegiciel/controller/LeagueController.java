@@ -1,7 +1,9 @@
 package com.sid.pokegiciel.controller;
 
+import com.sid.pokegiciel.model.Caracter;
 import com.sid.pokegiciel.model.League;
 import com.sid.pokegiciel.model.User;
+import com.sid.pokegiciel.repository.CaracterRepository;
 import com.sid.pokegiciel.repository.LeagueRepository;
 import com.sid.pokegiciel.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,8 @@ public class LeagueController {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    CaracterRepository caracterRepository;
 
     @PostConstruct
     private void postConstruct() {
@@ -47,6 +51,16 @@ public class LeagueController {
         model.addAttribute("userLeague", userLeague);
         final List<User> leagueUsers = userRepository.findAllByLeague_Id(userLeague.getId());
         model.addAttribute("leagueUsers", leagueUsers);
+
+        List<Caracter> caracters = null;
+        for (User user : leagueUsers) {
+            final List<Caracter> leagueCaracters = caracterRepository.findAllByUser_Username(user.getUsername());
+            if (leagueCaracters != null) {
+                caracters.addAll(leagueCaracters);
+            }
+        }
+        model.addAttribute("caracters", caracters);
+
         return "leagues";
     }
 
