@@ -13,7 +13,7 @@
     <meta name="description" content="Home">
     <meta name="author" content="">
 
-    <title>Accueil</title>
+    <title>Edition d'un personnage</title>
 
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
@@ -52,38 +52,18 @@
     </div>
 </nav>
 <div class="container">
-    <h2>Accueil</h2>
-    <%--<c:if test="${pageContext.request.userPrincipal.name != null}">--%>
-    <%--<form id="logoutForm" method="POST" action="${contextPath}/logout">--%>
-    <%--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>--%>
-    <%--</form>--%>
-
-    <%--<h2>Bienvenue ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Se--%>
-    <%--deconnecter</a></h2>--%>
-    <%--</c:if>--%>
-    <div class="container">
-        <h4>Ajouter un personnage</h4>
-        <form method="post" action="/caracters/post?${_csrf.parameterName}=${_csrf.token}">
-            <input class="form-control" name="name" placeholder="Nom du personnage">
-            <button type="submit" class="btn btn-success">Ajouter</button>
-        </form>
-    </div>
-
-    <div class="container">
-        <h4>Liste des personnages</h4>
-        <ul class="list-group">
-            <c:forEach items="${caracters}" var="caracter">
-                <li class="list-group-item">${caracter.name}
-                    <a class="btn btn-info" href="/caracters/edit?caracterId=${caracter.id}">Modifier</a>
-                </li>
-            </c:forEach>
-        </ul>
-    </div>
+    <h2>Edition d'un personage</h2>
+    <form method="post" modelAttribute="caracterForm"
+          action="/merde?${_csrf.parameterName}=${_csrf.token}">
+        <input class="form-control" value="${caracter.id}" type="hidden" name="id" placeholder="Nom du personnage">
+        <input class="form-control" value="${caracter.name}" name="name" placeholder="Nom du personnage">
+        <button type="submit" class="btn btn-info">Modifier</button>
+        <button type="submit" class="btn btn-danger">Supprimer</button>
+    </form>
 
 </div>
-<!-- /container -->
+</body>
 <script src="${contextPath}/resources/js/jquery.min.js"></script>
 <script src="${contextPath}/resources/js/popper.min.js"></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
-</body>
 </html>

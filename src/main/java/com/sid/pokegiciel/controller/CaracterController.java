@@ -6,6 +6,7 @@ import com.sid.pokegiciel.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,6 +37,21 @@ public class CaracterController {
         caracter.setName(name);
         caracter.setUser(userService.findByUsername(getCurrentUsername()));
         caracterRepository.save(caracter);
+        return "redirect:/home";
+    }
+
+    @RequestMapping(value = "/caracters/edit", method = RequestMethod.GET)
+    public String editCaracter(Model model, @RequestParam("caracterId") Long id) {
+        Caracter caracter = caracterRepository.findById(id);
+        model.addAttribute("caracter", caracter);
+        return "caracters-edit";
+    }
+
+    @RequestMapping(value = "/merde", method = RequestMethod.POST)
+    public String putCaracter(@ModelAttribute("caracterForm") Caracter editedCaracter, Model model) {
+        Caracter caracterToEdit = caracterRepository.findById(editedCaracter.getId());
+        caracterToEdit.setName(editedCaracter.getName());
+        caracterRepository.save(caracterToEdit);
         return "redirect:/home";
     }
 }

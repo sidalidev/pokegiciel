@@ -98,7 +98,6 @@
             <c:forEach items="${leagueUsers}" var="user">
                 <li class="list-group-item">
                         ${user.username}
-
                 </li>
             </c:forEach>
         </ul>

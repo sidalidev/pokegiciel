@@ -53,7 +53,6 @@ public class AuthenticationController {
             return "registration";
         }
 
-        // Make him belong to the first League
         userForm.setLeague(leagueRepository.findAll().get(0));
         userService.save(userForm);
 
