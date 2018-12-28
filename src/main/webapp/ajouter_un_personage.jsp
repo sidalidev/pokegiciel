@@ -13,7 +13,7 @@
     <meta name="description" content="Home">
     <meta name="author" content="">
 
-    <title>Accueil</title>
+    <title>Ajouter un personage</title>
 
     <link href="${contextPath}/resources/style/bulma.min.css" rel="stylesheet">
 
@@ -35,9 +35,6 @@
         <a class="nav-link" href="${contextPath}/combat/history">Historique</a>
     </li>
     <li>
-        <a class="nav-link" href="${contextPath}/ajouter_un_personage">Ajouter un personage</a>
-    </li>
-    <li>
         <form id="logoutForm" method="POST" action="${contextPath}/logout">
             <input style="cursor: pointer;" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <a class="nav-link" onclick="document.forms['logoutForm'].submit()">Deconnexion</a>
@@ -46,23 +43,17 @@
 </ul>
 
 <section>
-    <h2 class="title">Accueil</h2>
-
-    <c:if test="${pageContext.request.userPrincipal.name != null}">
-        <h2 class="subtitle">Bienvenue <strong>${pageContext.request.userPrincipal.name}</strong>.</h2>
-    </c:if>
+    <h2 class="title">Ajouter un personage</h2>
 
     <div class="container">
-        <h4>Liste des personnages</h4>
-        <ul class="list-group">
-            <c:forEach items="${caracters}" var="caracter">
-                <li class="list-group-item">${caracter.name}
-                    <em>Points: ${caracter.points}</em>
-                    <a class="btn btn-info" href="/caracters/edit?caracterId=${caracter.id}">Modifier</a>
-                </li>
-            </c:forEach>
-        </ul>
+        <h4 class="subtitle">Ajouter un personage</h4>
+        <form method="post" action="/caracters/post?${_csrf.parameterName}=${_csrf.token}">
+            <input class="input" type="text" required name="name" placeholder="Nom du personnage">
+            <input class="input" type="number" required name="points" placeholder="Points attribues">
+            <button type="submit" class="button is-success">Ajouter</button>
+        </form>
     </div>
+
     <br>
     <h3 class="subtitle">Vos points: ${points}</h3>
 

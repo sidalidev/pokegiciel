@@ -32,6 +32,14 @@ public class PersonageController {
         return "accueil";
     }
 
+    @RequestMapping(value = "/ajouter_un_personage", method = RequestMethod.GET)
+    public String ajouterUnPersonage(Model model) {
+        model.addAttribute("caracters", personageRepository.findAllByUser_Username(AuthenticationController.getCurrentUsername()));
+        model.addAttribute("points", userService.findByUsername(AuthenticationController.getCurrentUsername()).getPoints());
+
+        return "ajouter_un_personage";
+    }
+
 
     @RequestMapping(value = "/caracters/post", method = RequestMethod.POST)
     public String addCaracter(@RequestParam("name") String name, @RequestParam("points") int points) {
