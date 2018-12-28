@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Create an account</title>
+    <title>Inscription</title>
 
     <link href="${contextPath}/resources/style/bulma.min.css" rel="stylesheet">
 
@@ -30,10 +30,11 @@
 <div class="container">
 
     <form:form method="POST" modelAttribute="userForm" class="form-signin">
-        <h2 class="form-signin-heading">Inscription</h2>
+        <h2 class="title">Inscription</h2>
+        <p class="subtitle">Entrez vos informations</p>
         <spring:bind path="username">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="username" class="form-control" placeholder="Nom d'utilisateur"
+                <form:input type="text" path="username" class="input" placeholder="Nom d'utilisateur"
                             autofocus="true"></form:input>
                 <form:errors path="username"></form:errors>
             </div>
@@ -41,7 +42,7 @@
 
         <spring:bind path="password">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="password" path="password" class="form-control"
+                <form:input type="password" path="password" class="input"
                             placeholder="Mot de passe"></form:input>
                 <form:errors path="password"></form:errors>
             </div>
@@ -49,13 +50,13 @@
 
         <spring:bind path="passwordConfirm">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="password" path="passwordConfirm" class="form-control"
+                <form:input type="password" path="passwordConfirm" class="input"
                             placeholder="Confirmez votre mot de passe"></form:input>
                 <form:errors path="passwordConfirm"></form:errors>
             </div>
         </spring:bind>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">S'inscrire</button>
+        <button class="button is-success" type="submit">Inscription</button>
     </form:form>
 
 </div>

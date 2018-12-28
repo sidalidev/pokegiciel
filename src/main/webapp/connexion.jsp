@@ -30,18 +30,19 @@
 <div class="container">
 
     <form method="POST" action="${contextPath}/login" class="form-signin">
-        <h2 class="form-heading">Connexion</h2>
+        <h1 class="title">Connexion</h1>
+        <h1 class="subtitle">Veuillez saisir vos informations</h1>
 
         <div class="form-group ${error != null ? 'has-error' : ''}">
             <span>${message}</span>
-            <input name="username" type="text" class="form-control" placeholder="Nom d'utilisateur"
+            <input class="input" name="username" type="text" class="form-control" placeholder="Nom d'utilisateur"
                    autofocus="true"/>
-            <input name="password" type="password" class="form-control" placeholder="Mot de passe"/>
+            <input class="input" name="password" type="password" class="form-control" placeholder="Mot de passe"/>
             <span>${error}</span>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>
-            <h4 class="text-center"><a href="${contextPath}/inscription">S'inscrire</a></h4>
+            <button class="button is-success" type="submit">Se connecter</button>
+            <h4><a href="${contextPath}/inscription">S'inscrire</a></h4>
         </div>
 
     </form>
