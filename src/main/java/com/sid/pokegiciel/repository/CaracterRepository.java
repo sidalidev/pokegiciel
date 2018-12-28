@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface CaracterRepository extends JpaRepository<Caracter, Long> {
     List<Caracter> findAllByUser_Username(String username);
+    Caracter findById(Long id);
 }

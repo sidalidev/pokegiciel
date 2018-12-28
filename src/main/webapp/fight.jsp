@@ -27,9 +27,43 @@
 </head>
 
 <body>
-
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Pokegiciel</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="${contextPath}/home">Personages</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="${contextPath}/leagues">Ligues<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="${contextPath}/fight-history">Historique</a>
+            </li>
+            <li class="nav-item">
+                <form id="logoutForm" method="POST" action="${contextPath}/logout">
+                    <input style="cursor: pointer;" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    <a class="nav-link" onclick="document.forms['logoutForm'].submit()">Deconnexion</a>
+                </form>
+            </li>
+        </ul>
+    </div>
+</nav>
 <div class="container">
-    <h2>Combat</h2>
+    <h2>Combat <em>VS ${opponent.name}</em></h2>
+    <p>Selectionner votre champion:</p>
+    <ul class="list-group">
+        <c:forEach items="${caracters}" var="caracter">
+            <li class="list-group-item">${caracter.name}
+                <a href="/fight/simulation?caracterId=${caracter.id}&opponentId=${opponent.id}" class="btn btn-warning">Selectionner</a>
+            </li>
+        </c:forEach>
+    </ul>
+
 </div>
 <!-- /container -->
 <script src="${contextPath}/resources/js/jquery.min.js"></script>

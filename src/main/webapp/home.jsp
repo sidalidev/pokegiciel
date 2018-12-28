@@ -40,7 +40,7 @@
                 <a class="nav-link" href="${contextPath}/leagues">Ligues</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="${contextPath}/fights-history">Historique</a>
+                <a class="nav-link" href="${contextPath}/fight-history">Historique</a>
             </li>
             <li class="nav-item">
                 <form id="logoutForm" method="POST" action="${contextPath}/logout">

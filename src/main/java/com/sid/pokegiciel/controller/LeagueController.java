@@ -53,7 +53,7 @@ public class LeagueController {
         List<Caracter> caracters = new ArrayList<>();
         List<User> leagueUsersWithoutMe = new ArrayList<>();
         for (User user : leagueUsers) {
-            if (user.getUsername() !=getCurrentUsername()){
+            if (user.getUsername() != getCurrentUsername()){
                 leagueUsersWithoutMe.add(user);
             }
         }

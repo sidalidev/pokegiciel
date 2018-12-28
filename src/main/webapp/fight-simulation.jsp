@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Ligues</title>
+    <title>Historique des combats</title>
 
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
@@ -54,53 +54,8 @@
     </div>
 </nav>
 <div class="container">
-    <h2>Ligues (votre ligue: <em>${userLeague.name}</em>)</h2>
-    <div>
-        <h4>Ajouter une ligue</h4>
-        <form method="post" action="${contextPath}/leagues/post?${_csrf.parameterName}=${_csrf.token}">
-            <input name="name" class="form-control" placeholder="Nom de la ligue">
-            <button class="btn btn-success" type="submit">Ajouter</button>
-        </form>
-    </div>
-
-    <div>
-        <h4>Liste des ligues</h4>
-        <ul class="list-group">
-            <c:forEach items="${leagues}" var="league">
-                <li class="list-group-item">
-                    <form id="selectLeague${league.id}" method="post"
-                          action="${contextPath}/leagues/put?${_csrf.parameterName}=${_csrf.token}&id=${league.id}">
-                        <a onclick="document.forms['selectLeague${league.id}'].submit()">${league.name}</a>
-                    </form>
-                </li>
-            </c:forEach>
-        </ul>
-    </div>
-
-    <div>
-        <h4>Liste des Dresseurs de la ligue <em>${userLeague.name}</em>:</h4>
-        <ul class="list-group">
-            <c:forEach items="${leagueUsers}" var="user">
-                <li class="list-group-item">
-                        ${user.username}
-
-                </li>
-            </c:forEach>
-        </ul>
-    </div>
-
-    <div>
-        <h4>Liste des Personages de la ligue <em>${userLeague.name}</em>:</h4>
-        <ul class="list-group">
-            <c:forEach items="${caracters}" var="caracter">
-                <li class="list-group-item">
-                        ${caracter.name}
-                    <a href="/fight?opponentId=${caracter.id}" class="btn btn-danger">Combattre</a>
-                </li>
-            </c:forEach>
-        </ul>
-    </div>
-
+    <h2><em>${caracter.name} VS ${opponent.name}</em></h2>
+    <h4>Le gagnant est <em>${winner.name}</em>.</h4>
 </div>
 <!-- /container -->
 <script src="${contextPath}/resources/js/jquery.min.js"></script>
