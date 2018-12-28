@@ -1,7 +1,7 @@
 package com.example.intergiciel.auth.service;
 
-import com.example.intergiciel.model.Role;
-import com.example.intergiciel.model.User;
+import com.example.intergiciel.entity.Role;
+import com.example.intergiciel.entity.User;
 import com.example.intergiciel.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

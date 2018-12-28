@@ -1,7 +1,7 @@
 package com.example.intergiciel.auth.validator;
 
 import com.example.intergiciel.auth.service.UserService;
-import com.example.intergiciel.model.User;
+import com.example.intergiciel.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

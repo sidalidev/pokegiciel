@@ -1,6 +1,6 @@
 package com.example.intergiciel.repository;
 
-import com.example.intergiciel.model.Caracter;
+import com.example.intergiciel.entity.Caracter;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

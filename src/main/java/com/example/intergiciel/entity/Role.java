@@ -1,4 +1,4 @@
-package com.example.intergiciel.model;
+package com.example.intergiciel.entity;
 
 import javax.persistence.*;
 import java.util.Set;

@@ -1,7 +1,7 @@
 package com.example.intergiciel.controller;
 
-import com.example.intergiciel.model.Caracter;
-import com.example.intergiciel.model.Fight;
+import com.example.intergiciel.entity.Caracter;
+import com.example.intergiciel.entity.Fight;
 import com.example.intergiciel.repository.CaracterRepository;
 import com.example.intergiciel.repository.FightRepository;
 import org.springframework.beans.factory.annotation.Autowired;

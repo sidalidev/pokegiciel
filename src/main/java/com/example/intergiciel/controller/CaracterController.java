@@ -1,8 +1,8 @@
 package com.example.intergiciel.controller;
 
 import com.example.intergiciel.auth.service.UserService;
-import com.example.intergiciel.model.Caracter;
-import com.example.intergiciel.model.User;
+import com.example.intergiciel.entity.Caracter;
+import com.example.intergiciel.entity.User;
 import com.example.intergiciel.repository.CaracterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
