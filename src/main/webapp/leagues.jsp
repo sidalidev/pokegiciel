@@ -81,12 +81,10 @@
         <h4>Liste des Dresseurs de la ${userLeague.name}</h4>
         <ul>
             <c:forEach items="${leagueUsers}" var="user">
-                <c:if test="${user.username != pageContext.request.userPrincipal.name}">
-                    <li>
-                            ${user.username}
+                <li>
+                        ${user.username}
 
-                    </li>
-                </c:if>
+                </li>
             </c:forEach>
         </ul>
     </div>

@@ -47,11 +47,8 @@ public class LeagueController {
 
     @RequestMapping(value = "/leagues")
     public String getLeaguesPage(Model model) {
-        model.addAttribute("leagues", leagueRepository.findAll());
         final League userLeague = userRepository.findByUsername(getCurrentUsername()).getLeague();
-        model.addAttribute("userLeague", userLeague);
         final List<User> leagueUsers = userRepository.findAllByLeague_Id(userLeague.getId());
-        model.addAttribute("leagueUsers", leagueUsers);
 
         List<Caracter> caracters = new ArrayList<>();
         List<User> leagueUsersWithoutMe = new ArrayList<>();
@@ -60,12 +57,16 @@ public class LeagueController {
                 leagueUsersWithoutMe.add(user);
             }
         }
+
         for (User user : leagueUsersWithoutMe) {
             List<Caracter> leagueCaracters = caracterRepository.findAllByUser_Username(user.getUsername());
             for (Caracter leagueCaracter : leagueCaracters) {
                 caracters.add(leagueCaracter);
             }
         }
+        model.addAttribute("leagues", leagueRepository.findAll());
+        model.addAttribute("userLeague", userLeague);
+        model.addAttribute("leagueUsers", leagueUsersWithoutMe);
         model.addAttribute("caracters", caracters);
 
         return "leagues";

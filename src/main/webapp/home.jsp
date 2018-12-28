@@ -64,16 +64,16 @@
     <div>
         <h4>Ajouter un personnage</h4>
         <form method="post" action="/caracters/post?${_csrf.parameterName}=${_csrf.token}">
-            <input name="name" placeholder="Nom du personnage">
-            <button type="submit">Ajouter</button>
+            <input class="form-control" name="name" placeholder="Nom du personnage">
+            <button type="submit" class="btn btn-success">Ajouter</button>
         </form>
     </div>
 
     <div>
         <h4>Liste des personnages</h4>
-        <ul>
+        <ul class="list-group">
             <c:forEach items="${caracters}" var="caracter">
-                <li>${caracter.name}</li>
+                <li class="list-group-item">${caracter.name}</li>
             </c:forEach>
         </ul>
     </div>
