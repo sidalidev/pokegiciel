@@ -1,6 +1,7 @@
 package com.sid.pokegiciel.controller;
 
 import com.sid.pokegiciel.model.League;
+import com.sid.pokegiciel.model.User;
 import com.sid.pokegiciel.repository.LeagueRepository;
 import com.sid.pokegiciel.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,15 @@ public class LeagueController {
         League newLeague = new League();
         newLeague.setName(name);
         leagueRepository.save(newLeague);
+        return "redirect:/leagues";
+    }
+
+    @RequestMapping(value = "/leagues/put", method = RequestMethod.POST)
+    public String putLeague(@RequestParam("id") Long id) {
+        final User user = userRepository.findByUsername(getCurrentUsername());
+        final League league = leagueRepository.findById(id);
+        user.setLeague(league);
+        userRepository.save(user);
         return "redirect:/leagues";
     }
 }

@@ -67,7 +67,12 @@
         <h4>Liste des ligues</h4>
         <ul>
             <c:forEach items="${leagues}" var="league">
-                <li>${league.name}</li>
+                <li>
+                    <form id="selectLeague${league.id}" method="post"
+                          action="${contextPath}/leagues/put?${_csrf.parameterName}=${_csrf.token}&id=${league.id}">
+                        <a onclick="document.forms['selectLeague${league.id}'].submit()">${league.name}</a>
+                    </form>
+                </li>
             </c:forEach>
         </ul>
     </div>
