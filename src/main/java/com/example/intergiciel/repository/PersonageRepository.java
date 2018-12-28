@@ -8,7 +8,7 @@ import java.util.List;
 
 
 @Repository
-public interface CaracterRepository extends JpaRepository<PersonageEntity, Long> {
+public interface PersonageRepository extends JpaRepository<PersonageEntity, Long> {
     List<PersonageEntity> findAllByUser_Username(String username);
 
     PersonageEntity findById(Long id);

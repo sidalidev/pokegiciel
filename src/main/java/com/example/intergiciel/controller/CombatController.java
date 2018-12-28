@@ -3,8 +3,8 @@ package com.example.intergiciel.controller;
 import com.example.intergiciel.auth.controller.AuthenticationController;
 import com.example.intergiciel.entity.CombatEntity;
 import com.example.intergiciel.entity.PersonageEntity;
-import com.example.intergiciel.repository.CaracterRepository;
-import com.example.intergiciel.repository.FightRepository;
+import com.example.intergiciel.repository.CombatRepository;
+import com.example.intergiciel.repository.PersonageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,25 +13,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class FightController {
+public class CombatController {
     @Autowired
-    CaracterRepository caracterRepository;
+    PersonageRepository personageRepository;
 
     @Autowired
-    FightRepository combatRepository;
+    CombatRepository combatRepository;
 
     @RequestMapping(value = "/combat", method = RequestMethod.GET)
     public String combat(Model model, @RequestParam("opponentId") Long opponentId) {
-        model.addAttribute("opponent", caracterRepository.findById(opponentId));
-        model.addAttribute("caracters", caracterRepository.findAllByUser_Username(AuthenticationController.getCurrentUsername()));
+        model.addAttribute("opponent", personageRepository.findById(opponentId));
+        model.addAttribute("caracters", personageRepository.findAllByUser_Username(AuthenticationController.getCurrentUsername()));
         return "combat";
     }
 
     @RequestMapping(value = "/combat/simulation", method = RequestMethod.GET)
     public String combatSumulation(Model model, @RequestParam("caracterId") Long caracterId, @RequestParam("opponentId") Long opponentId) {
         CombatEntity combat = new CombatEntity();
-        final PersonageEntity opponentOne = caracterRepository.findById(opponentId);
-        final PersonageEntity opponentTwo = caracterRepository.findById(caracterId);
+        final PersonageEntity opponentOne = personageRepository.findById(opponentId);
+        final PersonageEntity opponentTwo = personageRepository.findById(caracterId);
         final PersonageEntity winner;
         if (opponentOne.getPoints() > opponentTwo.getPoints()) {
             winner = opponentOne;

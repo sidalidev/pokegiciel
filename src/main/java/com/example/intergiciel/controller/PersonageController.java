@@ -4,7 +4,7 @@ import com.example.intergiciel.auth.controller.AuthenticationController;
 import com.example.intergiciel.auth.entity.User;
 import com.example.intergiciel.auth.service.UserService;
 import com.example.intergiciel.entity.PersonageEntity;
-import com.example.intergiciel.repository.CaracterRepository;
+import com.example.intergiciel.repository.PersonageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class CaracterController {
+public class PersonageController {
 
 
     @Autowired
-    private CaracterRepository caracterRepository;
+    private PersonageRepository personageRepository;
 
     @Autowired
     private UserService userService;
@@ -26,7 +26,7 @@ public class CaracterController {
 
     @RequestMapping(value = {"/", "/accueil"}, method = RequestMethod.GET)
     public String accueil(Model model) {
-        model.addAttribute("caracters", caracterRepository.findAllByUser_Username(AuthenticationController.getCurrentUsername()));
+        model.addAttribute("caracters", personageRepository.findAllByUser_Username(AuthenticationController.getCurrentUsername()));
         model.addAttribute("points", userService.findByUsername(AuthenticationController.getCurrentUsername()).getPoints());
 
         return "accueil";
@@ -44,14 +44,14 @@ public class CaracterController {
             caracter.setName(name);
             caracter.setPoints(points);
             caracter.setUser(userService.findByUsername(AuthenticationController.getCurrentUsername()));
-            caracterRepository.save(caracter);
+            personageRepository.save(caracter);
         }
         return "redirect:/accueil";
     }
 
     @RequestMapping(value = "/caracters/edit", method = RequestMethod.GET)
     public String editCaracter(Model model, @RequestParam("caracterId") Long id) {
-        PersonageEntity caracter = caracterRepository.findById(id);
+        PersonageEntity caracter = personageRepository.findById(id);
         model.addAttribute("caracter", caracter);
         return "modifier_un_personage";
     }
@@ -62,17 +62,17 @@ public class CaracterController {
         int currentUserPoints = currentUser.getPoints();
         int caracterPoints = editedCaracter.getPoints();
         if (currentUserPoints > caracterPoints) {
-            int oldCaracterPoints = caracterRepository.findById(editedCaracter.getId()).getPoints();
+            int oldCaracterPoints = personageRepository.findById(editedCaracter.getId()).getPoints();
             if (oldCaracterPoints > caracterPoints) {
                 currentUser.setPoints(currentUserPoints + (oldCaracterPoints - caracterPoints));
             } else {
                 currentUser.setPoints(currentUserPoints - (caracterPoints - oldCaracterPoints));
             }
             userService.save(currentUser);
-            PersonageEntity caracterToEdit = caracterRepository.findById(editedCaracter.getId());
+            PersonageEntity caracterToEdit = personageRepository.findById(editedCaracter.getId());
             caracterToEdit.setName(editedCaracter.getName());
             caracterToEdit.setPoints(editedCaracter.getPoints());
-            caracterRepository.save(caracterToEdit);
+            personageRepository.save(caracterToEdit);
             return "redirect:/accueil";
         }
         return "redirect:/modifier_un_personage";
@@ -82,10 +82,10 @@ public class CaracterController {
     public String deleteCaracter(@ModelAttribute("caracterForm") PersonageEntity caracter) {
         User currentUser = userService.findByUsername(AuthenticationController.getCurrentUsername());
         int currentUserPoints = currentUser.getPoints();
-        int caracterPoints = caracterRepository.findById(caracter.getId()).getPoints();
+        int caracterPoints = personageRepository.findById(caracter.getId()).getPoints();
         currentUser.setPoints(currentUserPoints + caracterPoints);
         userService.save(currentUser);
-        caracterRepository.delete(caracter.getId());
+        personageRepository.delete(caracter.getId());
         return "redirect:/accueil";
     }
 }

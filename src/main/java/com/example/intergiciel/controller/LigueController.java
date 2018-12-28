@@ -5,8 +5,8 @@ import com.example.intergiciel.auth.entity.User;
 import com.example.intergiciel.auth.repository.UserRepository;
 import com.example.intergiciel.entity.LigueEntity;
 import com.example.intergiciel.entity.PersonageEntity;
-import com.example.intergiciel.repository.CaracterRepository;
-import com.example.intergiciel.repository.LeagueRepository;
+import com.example.intergiciel.repository.LigueRepository;
+import com.example.intergiciel.repository.PersonageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,29 +19,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class LeagueController {
+public class LigueController {
     @Autowired
-    LeagueRepository leagueRepository;
+    LigueRepository ligueRepository;
 
     @Autowired
     UserRepository userRepository;
 
     @Autowired
-    CaracterRepository caracterRepository;
+    PersonageRepository personageRepository;
 
     @PostConstruct
     private void postConstruct() {
         LigueEntity newLeague = new LigueEntity();
         newLeague.setName("LigueEntity 1");
-        leagueRepository.save(newLeague);
+        ligueRepository.save(newLeague);
 
         LigueEntity newLeague2 = new LigueEntity();
         newLeague2.setName("LigueEntity 2");
-        leagueRepository.save(newLeague2);
+        ligueRepository.save(newLeague2);
 
         LigueEntity newLeague3 = new LigueEntity();
         newLeague3.setName("LigueEntity 3");
-        leagueRepository.save(newLeague3);
+        ligueRepository.save(newLeague3);
     }
 
     @RequestMapping(value = "/ligues")
@@ -58,12 +58,12 @@ public class LeagueController {
         }
 
         for (User user : leagueUsersWithoutMe) {
-            List<PersonageEntity> leagueCaracters = caracterRepository.findAllByUser_Username(user.getUsername());
+            List<PersonageEntity> leagueCaracters = personageRepository.findAllByUser_Username(user.getUsername());
             for (PersonageEntity leagueCaracter : leagueCaracters) {
                 caracters.add(leagueCaracter);
             }
         }
-        model.addAttribute("ligues", leagueRepository.findAll());
+        model.addAttribute("ligues", ligueRepository.findAll());
         model.addAttribute("userLeague", userLeague);
         model.addAttribute("leagueUsers", leagueUsersWithoutMe);
         model.addAttribute("caracters", caracters);
@@ -75,14 +75,14 @@ public class LeagueController {
     public String postLeague(@RequestParam("name") String name) {
         LigueEntity newLeague = new LigueEntity();
         newLeague.setName(name);
-        leagueRepository.save(newLeague);
+        ligueRepository.save(newLeague);
         return "redirect:/ligues";
     }
 
     @RequestMapping(value = "/ligues/put", method = RequestMethod.POST)
     public String putLeague(@RequestParam("id") Long id) {
         final User user = userRepository.findByUsername(AuthenticationController.getCurrentUsername());
-        final LigueEntity league = leagueRepository.findById(id);
+        final LigueEntity league = ligueRepository.findById(id);
         user.setLeague(league);
         userRepository.save(user);
         return "redirect:/ligues";

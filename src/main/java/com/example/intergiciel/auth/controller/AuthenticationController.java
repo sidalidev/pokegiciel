@@ -4,7 +4,7 @@ import com.example.intergiciel.auth.entity.User;
 import com.example.intergiciel.auth.service.SecurityService;
 import com.example.intergiciel.auth.service.UserService;
 import com.example.intergiciel.auth.validator.UserValidator;
-import com.example.intergiciel.repository.LeagueRepository;
+import com.example.intergiciel.repository.LigueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,7 +27,7 @@ public class AuthenticationController {
     private UserValidator userValidator;
 
     @Autowired
-    private LeagueRepository leagueRepository;
+    private LigueRepository ligueRepository;
 
 
     public static String getCurrentUsername() {
@@ -53,7 +53,7 @@ public class AuthenticationController {
             return "inscription";
         }
 
-        userForm.setLeague(leagueRepository.findAll().get(0));
+        userForm.setLeague(ligueRepository.findAll().get(0));
         userForm.setPoints(10000);
         userService.save(userForm);
 
