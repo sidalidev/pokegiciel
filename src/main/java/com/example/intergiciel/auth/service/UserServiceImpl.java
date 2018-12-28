@@ -1,4 +1,4 @@
-package com.example.intergiciel.service;
+package com.example.intergiciel.auth.service;
 
 import com.example.intergiciel.model.User;
 import com.example.intergiciel.repository.RoleRepository;

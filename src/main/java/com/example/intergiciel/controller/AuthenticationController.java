@@ -1,10 +1,10 @@
 package com.example.intergiciel.controller;
 
+import com.example.intergiciel.auth.service.SecurityService;
+import com.example.intergiciel.auth.service.UserService;
+import com.example.intergiciel.auth.validator.UserValidator;
 import com.example.intergiciel.model.User;
 import com.example.intergiciel.repository.LeagueRepository;
-import com.example.intergiciel.service.SecurityService;
-import com.example.intergiciel.service.UserService;
-import com.example.intergiciel.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
