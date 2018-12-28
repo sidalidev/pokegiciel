@@ -24,44 +24,36 @@
     <![endif]-->
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Pokegiciel</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="${contextPath}/accueil">Personages<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="${contextPath}/ligues">Ligues</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="${contextPath}/combat/history">Historique</a>
-            </li>
-            <li class="nav-item">
-                <form id="logoutForm" method="POST" action="${contextPath}/logout">
-                    <input style="cursor: pointer;" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                    <a class="nav-link" onclick="document.forms['logoutForm'].submit()">Deconnexion</a>
-                </form>
-            </li>
-        </ul>
-    </div>
-</nav>
-<div class="container">
-    <h2>Accueil</h2>
+<ul>
+    <li>
+        <a class="nav-link" href="${contextPath}/accueil">Personages</a>
+    </li>
+    <li>
+        <a class="nav-link" href="${contextPath}/ligues">Ligues</a>
+    </li>
+    <li>
+        <a class="nav-link" href="${contextPath}/combat/history">Historique</a>
+    </li>
+    <li>
+        <form id="logoutForm" method="POST" action="${contextPath}/logout">
+            <input style="cursor: pointer;" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            <a class="nav-link" onclick="document.forms['logoutForm'].submit()">Deconnexion</a>
+        </form>
+    </li>
+</ul>
+
+<section>
+    <h2 class="title">Accueil</h2>
+
     <c:if test="${pageContext.request.userPrincipal.name != null}">
-        <h2>Bienvenue <em class="text-info">${pageContext.request.userPrincipal.name}</em></h2>
+        <h2 class="subtitle">Bienvenue <strong>${pageContext.request.userPrincipal.name}</strong>.</h2>
     </c:if>
-    <h3>Points: ${points}</h3>
     <div class="container">
-        <h4>Ajouter un personnage</h4>
+        <h4 class="subtitle">Ajouter un personage</h4>
         <form method="post" action="/caracters/post?${_csrf.parameterName}=${_csrf.token}">
-            <input class="form-control" type="text" required name="name" placeholder="Nom du personnage">
-            <input class="form-control" type="number" required name="points" placeholder="Points attribues">
-            <button type="submit" class="btn btn-success">Ajouter</button>
+            <input class="input" type="text" required name="name" placeholder="Nom du personnage">
+            <input class="input" type="number" required name="points" placeholder="Points attribues">
+            <button type="submit" class="button is-success">Ajouter</button>
         </form>
     </div>
 
@@ -76,7 +68,9 @@
             </c:forEach>
         </ul>
     </div>
+    <br>
+    <h3 class="subtitle">Vos points: ${points}</h3>
 
-</div>
+</section>
 </body>
 </html>
