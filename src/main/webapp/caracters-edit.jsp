@@ -54,12 +54,17 @@
 <div class="container">
     <h2>Edition d'un personage</h2>
     <form method="post" modelAttribute="caracterForm"
-          action="/merde?${_csrf.parameterName}=${_csrf.token}">
+          action="/caracter/put?${_csrf.parameterName}=${_csrf.token}">
         <input class="form-control" value="${caracter.id}" type="hidden" name="id" placeholder="Nom du personnage">
         <input class="form-control" value="${caracter.name}" name="name" placeholder="Nom du personnage">
         <button type="submit" class="btn btn-info">Modifier</button>
+    </form>
+    <form method="post" modelAttribute="caracterForm"
+          action="/caracter/delete?${_csrf.parameterName}=${_csrf.token}">
+        <input class="form-control" value="${caracter.id}" type="hidden" name="id" placeholder="Nom du personnage">
         <button type="submit" class="btn btn-danger">Supprimer</button>
     </form>
+
 
 </div>
 </body>

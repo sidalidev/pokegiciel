@@ -47,11 +47,17 @@ public class CaracterController {
         return "caracters-edit";
     }
 
-    @RequestMapping(value = "/merde", method = RequestMethod.POST)
-    public String putCaracter(@ModelAttribute("caracterForm") Caracter editedCaracter, Model model) {
+    @RequestMapping(value = "/caracter/put", method = RequestMethod.POST)
+    public String putCaracter(@ModelAttribute("caracterForm") Caracter editedCaracter) {
         Caracter caracterToEdit = caracterRepository.findById(editedCaracter.getId());
         caracterToEdit.setName(editedCaracter.getName());
         caracterRepository.save(caracterToEdit);
+        return "redirect:/home";
+    }
+
+    @RequestMapping(value = "/caracter/delete", method = RequestMethod.POST)
+    public String deleteCaracter(@ModelAttribute("caracterForm") Caracter caracter) {
+        caracterRepository.delete(caracter.getId());
         return "redirect:/home";
     }
 }
