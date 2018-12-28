@@ -54,7 +54,13 @@ public class LeagueController {
         model.addAttribute("leagueUsers", leagueUsers);
 
         List<Caracter> caracters = new ArrayList<>();
+        List<User> leagueUsersWithoutMe = new ArrayList<>();
         for (User user : leagueUsers) {
+            if (user.getUsername() !=getCurrentUsername()){
+                leagueUsersWithoutMe.add(user);
+            }
+        }
+        for (User user : leagueUsersWithoutMe) {
             List<Caracter> leagueCaracters = caracterRepository.findAllByUser_Username(user.getUsername());
             for (Caracter leagueCaracter : leagueCaracters) {
                 caracters.add(leagueCaracter);
