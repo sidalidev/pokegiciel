@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.sid.pokegiciel.controller.AuthenticationController.getCurrentUsername;
@@ -52,11 +53,11 @@ public class LeagueController {
         final List<User> leagueUsers = userRepository.findAllByLeague_Id(userLeague.getId());
         model.addAttribute("leagueUsers", leagueUsers);
 
-        List<Caracter> caracters = null;
+        List<Caracter> caracters = new ArrayList<>();
         for (User user : leagueUsers) {
-            final List<Caracter> leagueCaracters = caracterRepository.findAllByUser_Username(user.getUsername());
-            if (leagueCaracters != null) {
-                caracters.addAll(leagueCaracters);
+            List<Caracter> leagueCaracters = caracterRepository.findAllByUser_Username(user.getUsername());
+            for (Caracter leagueCaracter : leagueCaracters) {
+                caracters.add(leagueCaracter);
             }
         }
         model.addAttribute("caracters", caracters);
