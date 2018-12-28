@@ -52,11 +52,11 @@
         <h2 class="subtitle">Bienvenue <strong>${pageContext.request.userPrincipal.name}</strong>.</h2>
     </c:if>
 
-    <div class="container">
-        <h4>Liste des personnages</h4>
-        <ul class="list-group">
+    <h4 class="subtitle">Liste des personnages</h4>
+    <div class="content">
+        <ul>
             <c:forEach items="${caracters}" var="caracter">
-                <li class="list-group-item">${caracter.name}
+                <li>${caracter.name}
                     <em>Points: ${caracter.points}</em>
                     <a class="btn btn-info" href="/caracters/edit?caracterId=${caracter.id}">Modifier</a>
                 </li>
@@ -64,7 +64,7 @@
         </ul>
     </div>
     <br>
-    <h3 class="subtitle">Vos points: ${points}</h3>
+    <h3 class="subtitle">Vos points: <strong>${points}</strong>.</h3>
 
 </section>
 </body>
