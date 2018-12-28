@@ -31,13 +31,13 @@ public class LigueController {
 
     @PostConstruct
     private void postConstruct() {
-        LigueEntity league1 = new LigueEntity();
-        league1.setName("Arene Eau");
-        ligueRepository.save(league1);
+        LigueEntity ligue1 = new LigueEntity();
+        ligue1.setName("Arene Eau");
+        ligueRepository.save(ligue1);
 
-        LigueEntity league2 = new LigueEntity();
-        league2.setName("Arene Feu");
-        ligueRepository.save(league2);
+        LigueEntity ligue2 = new LigueEntity();
+        ligue2.setName("Arene Feu");
+        ligueRepository.save(ligue2);
     }
 
     @RequestMapping(value = "/ligues")

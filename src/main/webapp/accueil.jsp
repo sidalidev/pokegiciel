@@ -58,10 +58,10 @@
     <h4 class="subtitle">Liste des personnages</h4>
     <div class="content">
         <ul>
-            <c:forEach items="${caracters}" var="caracter">
-                <li>${caracter.name}
-                    <em>Points: ${caracter.points}</em>
-                    <a class="btn btn-info" href="/caracters/edit?caracterId=${caracter.id}">Modifier</a>
+            <c:forEach items="${caracters}" var="personage">
+                <li>${personage.name}
+                    <em>Points: ${personage.points}</em>
+                    <a class="btn btn-info" href="/caracters/edit?caracterId=${personage.id}">Modifier</a>
                 </li>
             </c:forEach>
         </ul>

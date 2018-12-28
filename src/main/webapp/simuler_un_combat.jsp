@@ -50,7 +50,7 @@
     </li>
 </ul>
 <section>
-    <h2 class="title">${caracter} VS ${opponent}</h2>
+    <h2 class="title">${personage} VS ${adversaire}</h2>
     <h4 class="subtitle">Le gagnant est <strong>${vainqueur}</strong>.</h4>
 </section>
 </body>

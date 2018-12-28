@@ -72,10 +72,10 @@
     <h4 class="subtitle">Personages a combattre de votre ligue:</h4>
     <div class="content">
         <ul class="list-group">
-            <c:forEach items="${caracters}" var="caracter">
+            <c:forEach items="${caracters}" var="personage">
                 <li class="list-group-item">
-                        ${caracter.name}
-                    <a href="/combat?opponentId=${caracter.id}" class="has-text-danger">Combattre</a>
+                        ${personage.name}
+                    <a href="/combat?opponentId=${personage.id}" class="has-text-danger">Combattre</a>
                 </li>
             </c:forEach>
         </ul>

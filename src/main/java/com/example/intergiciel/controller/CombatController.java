@@ -21,40 +21,41 @@ public class CombatController {
     CombatRepository combatRepository;
 
 
-    @RequestMapping(value = "/combat/simulation", method = RequestMethod.GET)
-    public String combatSumulation(Model model, @RequestParam("caracterId") Long caracterId, @RequestParam("opponentId") Long opponentId) {
-        CombatEntity combat = new CombatEntity();
-        final PersonageEntity opponentOne = personageRepository.findById(opponentId);
-        final PersonageEntity opponentTwo = personageRepository.findById(caracterId);
-        final PersonageEntity winner;
-        if (opponentOne.getPoints() > opponentTwo.getPoints()) {
-            winner = opponentOne;
-        } else {
-            winner = opponentTwo;
-        }
-
-        combat.setAdversaire1(opponentOne.getName());
-        combat.setAdversaire2(opponentTwo.getName());
-        combat.setVainqueur(winner.getName());
-
-        model.addAttribute("opponent", combat.getAdversaire1());
-        model.addAttribute("caracter", combat.getAdversaire2());
-        model.addAttribute("winner", combat.getVainqueur());
-
-        combatRepository.save(combat);
-        return "simuler_un_combat";
-    }
-
-    @RequestMapping(value = "/combat", method = RequestMethod.GET)
-    public String combat(Model model, @RequestParam("opponentId") Long opponentId) {
-        model.addAttribute("opponent", personageRepository.findById(opponentId));
-        model.addAttribute("caracters", personageRepository.findAllByUser_Username(AuthenticationController.getCurrentUsername()));
-        return "combat";
-    }
-
     @RequestMapping(value = "/combat/history", method = RequestMethod.GET)
     public String combatHistory(Model model) {
         model.addAttribute("combats", combatRepository.findAll());
         return "historique_des_combats";
     }
+
+    @RequestMapping(value = "/combat", method = RequestMethod.GET)
+    public String combat(Model model, @RequestParam("opponentId") Long opponentId) {
+        model.addAttribute("adversaire", personageRepository.findById(opponentId));
+        model.addAttribute("personages", personageRepository.findAllByUser_Username(AuthenticationController.getCurrentUsername()));
+        return "combat";
+    }
+
+    @RequestMapping(value = "/combat/simulation", method = RequestMethod.GET)
+    public String combatSimulation(Model model, @RequestParam("caracterId") Long caracterId, @RequestParam("opponentId") Long opponentId) {
+        CombatEntity combat = new CombatEntity();
+        final PersonageEntity adversaire1 = personageRepository.findById(opponentId);
+        final PersonageEntity adversaire2 = personageRepository.findById(caracterId);
+        final PersonageEntity vainqueur;
+        if (adversaire1.getPoints() > adversaire2.getPoints()) {
+            vainqueur = adversaire1;
+        } else {
+            vainqueur = adversaire2;
+        }
+
+        combat.setAdversaire1(adversaire1.getName());
+        combat.setAdversaire2(adversaire2.getName());
+        combat.setVainqueur(vainqueur.getName());
+
+        model.addAttribute("adversaire", combat.getAdversaire1());
+        model.addAttribute("personage", combat.getAdversaire2());
+        model.addAttribute("vainqueur", combat.getVainqueur());
+
+        combatRepository.save(combat);
+        return "simuler_un_combat";
+    }
+
 }

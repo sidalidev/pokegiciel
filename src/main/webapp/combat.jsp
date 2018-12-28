@@ -50,12 +50,12 @@
     </li>
 </ul>
 <section>
-    <h2>Combat <em>VS ${opponent.name}</em></h2>
+    <h2>Combat <em>VS ${adversaire.name}</em></h2>
     <p>Selectionner votre champion:</p>
     <ul class="list-group">
-        <c:forEach items="${caracters}" var="caracter">
-            <li class="list-group-item">${caracter.name}
-                <a href="/combat/simulation?caracterId=${caracter.id}&opponentId=${opponent.id}"
+        <c:forEach items="${personages}" var="personage">
+            <li class="list-group-item">${personage.name}
+                <a href="/combat/simulation?caracterId=${personage.id}&opponentId=${adversaire.id}"
                    class="btn btn-warning">Selectionner</a>
             </li>
         </c:forEach>
