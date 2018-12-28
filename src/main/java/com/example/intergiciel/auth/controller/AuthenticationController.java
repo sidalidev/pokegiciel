@@ -61,7 +61,7 @@ public class AuthenticationController {
         return "redirect:/home";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/connexion", method = RequestMethod.GET)
     public String login(Model model, String error, String logout) {
         if (error != null)
             model.addAttribute("error", "Votre nom d'utilisateur et mot de passe sont invalides.");
@@ -69,6 +69,6 @@ public class AuthenticationController {
         if (logout != null)
             model.addAttribute("message", "Deconnecte.");
 
-        return "login";
+        return "connexion";
     }
 }
