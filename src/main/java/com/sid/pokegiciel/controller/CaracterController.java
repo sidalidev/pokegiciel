@@ -27,6 +27,8 @@ public class CaracterController {
     @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
     public String home(Model model) {
         model.addAttribute("caracters", caracterRepository.findAllByUser_Username(getCurrentUsername()));
+        model.addAttribute("points", userService.findByUsername(getCurrentUsername()).getPoints());
+
         return "home";
     }
 

@@ -53,14 +53,10 @@
 </nav>
 <div class="container">
     <h2>Accueil</h2>
-    <%--<c:if test="${pageContext.request.userPrincipal.name != null}">--%>
-    <%--<form id="logoutForm" method="POST" action="${contextPath}/logout">--%>
-    <%--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>--%>
-    <%--</form>--%>
-
-    <%--<h2>Bienvenue ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Se--%>
-    <%--deconnecter</a></h2>--%>
-    <%--</c:if>--%>
+    <c:if test="${pageContext.request.userPrincipal.name != null}">
+        <h2>Bienvenue ${pageContext.request.userPrincipal.name}</h2>
+    </c:if>
+    <h3>Points: ${points}</h3>
     <div class="container">
         <h4>Ajouter un personnage</h4>
         <form method="post" action="/caracters/post?${_csrf.parameterName}=${_csrf.token}">

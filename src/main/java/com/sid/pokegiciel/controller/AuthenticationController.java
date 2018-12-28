@@ -54,10 +54,10 @@ public class AuthenticationController {
         }
 
         userForm.setLeague(leagueRepository.findAll().get(0));
+        userForm.setPoints(10000);
         userService.save(userForm);
 
         securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
-
         return "redirect:/home";
     }
 

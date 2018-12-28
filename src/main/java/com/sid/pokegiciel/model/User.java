@@ -18,6 +18,8 @@ public class User {
     @Column
     private String username;
 
+    private int points;
+
     private String password;
 
     @Transient
@@ -41,7 +43,6 @@ public class User {
     @JsonIgnore
     private League league;
 
-
     public Long getId() {
         return id;
     }
@@ -58,6 +59,14 @@ public class User {
         this.username = username;
     }
 
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -65,7 +74,6 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
 
     public String getPasswordConfirm() {
         return passwordConfirm;
