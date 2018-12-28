@@ -1,10 +1,12 @@
 package com.example.intergiciel.entity;
 
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
-@Table(name = "fights")
 public class CombatEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

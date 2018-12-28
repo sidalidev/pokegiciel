@@ -3,7 +3,6 @@ package com.example.intergiciel.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "leagues")
 public class LigueEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

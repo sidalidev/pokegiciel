@@ -8,7 +8,6 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "caracters")
 public class PersonageEntity {
 
     @Id
