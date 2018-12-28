@@ -26,34 +26,28 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Pokegiciel</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="${contextPath}/accueil">Personages</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="${contextPath}/ligues">Ligues<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="${contextPath}/combat/history">Historique</a>
-            </li>
-            <li class="nav-item">
-                <form id="logoutForm" method="POST" action="${contextPath}/logout">
-                    <input style="cursor: pointer;" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                    <a class="nav-link" onclick="document.forms['logoutForm'].submit()">Deconnexion</a>
-                </form>
-            </li>
-        </ul>
-    </div>
-</nav>
-<div class="container">
-    <h2>Ligues (votre ligue: <em>${userLeague.name}</em>)</h2>
+<ul>
+    <li>
+        <a class="nav-link" href="${contextPath}/accueil">Personages</a>
+    </li>
+    <li>
+        <a class="nav-link" href="${contextPath}/ligues">Ligues</a>
+    </li>
+    <li>
+        <a class="nav-link" href="${contextPath}/combat/history">Historique</a>
+    </li>
+    <li>
+        <a class="nav-link" href="${contextPath}/ajouter_un_personage">Ajouter un personage</a>
+    </li>
+    <li>
+        <form id="logoutForm" method="POST" action="${contextPath}/logout">
+            <input style="cursor: pointer;" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            <a class="nav-link" onclick="document.forms['logoutForm'].submit()">Deconnexion</a>
+        </form>
+    </li>
+</ul>
+<section>
+    <h2 class="subtitle">Ligues (votre ligue: <em>${userLeague.name}</em>)</h2>
     <div>
         <h4>Ajouter une ligue</h4>
         <form method="post" action="${contextPath}/ligues/post?${_csrf.parameterName}=${_csrf.token}">
@@ -63,7 +57,7 @@
     </div>
 
     <div>
-        <h4>Liste des ligues</h4>
+        <h4 class="subtitle">Liste des ligues</h4>
         <ul class="list-group">
             <c:forEach items="${ligues}" var="league">
                 <li class="list-group-item">
@@ -80,7 +74,7 @@
 
 
     <div>
-        <h4>Liste des Personages de la ligue <em>${userLeague.name}</em>:</h4>
+        <h4 class="subtitle">Liste des Personages de la ligue <em>${userLeague.name}</em>:</h4>
         <ul class="list-group">
             <c:forEach items="${caracters}" var="caracter">
                 <li class="list-group-item">
@@ -92,7 +86,7 @@
     </div>
 
     <div>
-        <h4>Liste des Dresseurs de la ligue <em>${userLeague.name}</em>:</h4>
+        <h4 class="subtitle">Liste des Dresseurs de la ligue <em>${userLeague.name}</em>:</h4>
         <ul class="list-group">
             <c:forEach items="${leagueUsers}" var="user">
                 <li class="list-group-item">
@@ -102,7 +96,6 @@
         </ul>
     </div>
 
-
-</div>
+</section>
 </body>
 </html>

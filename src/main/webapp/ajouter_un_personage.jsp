@@ -35,6 +35,9 @@
         <a class="nav-link" href="${contextPath}/combat/history">Historique</a>
     </li>
     <li>
+        <a class="nav-link" href="${contextPath}/ajouter_un_personage">Ajouter un personage</a>
+    </li>
+    <li>
         <form id="logoutForm" method="POST" action="${contextPath}/logout">
             <input style="cursor: pointer;" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <a class="nav-link" onclick="document.forms['logoutForm'].submit()">Deconnexion</a>

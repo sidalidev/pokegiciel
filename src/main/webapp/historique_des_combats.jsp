@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Historique des combats</title>
+    <title>Combats: historique</title>
 
     <link href="${contextPath}/resources/style/bulma.min.css" rel="stylesheet">
 
@@ -27,15 +27,37 @@
 
 <body>
 
-<div class="container">
-    <h2>Historique des combats</h2>
-    <ul class="list-group">
-        <c:forEach items="${combats}" var="combat">
-            <li class="list-group-item">
-                <em>${combat.opponentOne} VS ${combat.opponentOne}</em>
-                <span>Gagnant: ${combat.winner}</span>
-            </li>
-        </c:forEach>
-    </ul>
-</div>
+<ul>
+    <li>
+        <a class="nav-link" href="${contextPath}/accueil">Personages</a>
+    </li>
+    <li>
+        <a class="nav-link" href="${contextPath}/ligues">Ligues</a>
+    </li>
+    <li>
+        <a class="nav-link" href="${contextPath}/combat/history">Historique</a>
+    </li>
+    <li>
+        <a class="nav-link" href="${contextPath}/ajouter_un_personage">Ajouter un personage</a>
+    </li>
+    <li>
+        <form id="logoutForm" method="POST" action="${contextPath}/logout">
+            <input style="cursor: pointer;" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            <a class="nav-link" onclick="document.forms['logoutForm'].submit()">Deconnexion</a>
+        </form>
+    </li>
+</ul>
+<section>
+    <h2 class="title">Combats: historique</h2>
+    <div class="content">
+        <ul>
+            <c:forEach items="${combats}" var="combat">
+                <li>
+                    <em>${combat.opponentOne} VS ${combat.opponentOne}</em>
+                    <span>Gagnant: ${combat.winner}</span>
+                </li>
+            </c:forEach>
+        </ul>
+    </div>
+</section>
 </body>

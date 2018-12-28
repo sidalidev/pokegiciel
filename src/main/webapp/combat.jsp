@@ -26,32 +26,26 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Pokegiciel</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="${contextPath}/accueil">Personages</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="${contextPath}/ligues">Ligues<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="${contextPath}/combat/history">Historique</a>
-            </li>
-            <li class="nav-item">
-                <form id="logoutForm" method="POST" action="${contextPath}/logout">
-                    <input style="cursor: pointer;" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                    <a class="nav-link" onclick="document.forms['logoutForm'].submit()">Deconnexion</a>
-                </form>
-            </li>
-        </ul>
-    </div>
-</nav>
+<ul>
+    <li>
+        <a class="nav-link" href="${contextPath}/accueil">Personages</a>
+    </li>
+    <li>
+        <a class="nav-link" href="${contextPath}/ligues">Ligues</a>
+    </li>
+    <li>
+        <a class="nav-link" href="${contextPath}/combat/history">Historique</a>
+    </li>
+    <li>
+        <a class="nav-link" href="${contextPath}/ajouter_un_personage">Ajouter un personage</a>
+    </li>
+    <li>
+        <form id="logoutForm" method="POST" action="${contextPath}/logout">
+            <input style="cursor: pointer;" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            <a class="nav-link" onclick="document.forms['logoutForm'].submit()">Deconnexion</a>
+        </form>
+    </li>
+</ul>
 <div class="container">
     <h2>Combat <em>VS ${opponent.name}</em></h2>
     <p>Selectionner votre champion:</p>
