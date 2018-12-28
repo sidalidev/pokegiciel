@@ -34,6 +34,9 @@
         <a class="nav-link" href="${contextPath}/ligues">Ligues</a>
     </li>
     <li>
+        <a class="nav-link" href="${contextPath}/ajouter_une_ligue">Ajouter une ligue</a>
+    </li>
+    <li>
         <a class="nav-link" href="${contextPath}/combat/history">Historique</a>
     </li>
     <li>
