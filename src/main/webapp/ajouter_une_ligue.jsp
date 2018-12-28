@@ -49,20 +49,11 @@
 </ul>
 
 <section>
-    <h2 class="title">Ajouter un personage</h2>
-
-    <div class="container">
-        <h4 class="subtitle">Ajouter un personage</h4>
-        <form method="post" action="/caracters/post?${_csrf.parameterName}=${_csrf.token}">
-            <input class="input" type="text" required name="name" placeholder="Nom du personnage">
-            <input class="input" type="number" required name="points" placeholder="Points attribues">
-            <button type="submit" class="button is-success">Ajouter</button>
-        </form>
-    </div>
-
-    <br>
-    <h3 class="subtitle">Vos points: ${points}</h3>
-
+    <h4><strong>Ajouter une ligue</strong></h4>
+    <form method="post" action="${contextPath}/ligues/post?${_csrf.parameterName}=${_csrf.token}">
+        <input name="name" class="input" placeholder="Nom de la ligue">
+        <button class="button is-success" type="submit">Ajouter</button>
+    </form>
 </section>
 </body>
 </html>

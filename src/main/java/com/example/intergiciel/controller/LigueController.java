@@ -67,6 +67,13 @@ public class LigueController {
         return "ligues";
     }
 
+
+    @RequestMapping(value = "/ajouter_une_ligue", method = RequestMethod.GET)
+    public String ajouterUneLigue() {
+        return "/ajouter_une_ligue";
+    }
+
+
     @RequestMapping(value = "/ligues/post", method = RequestMethod.POST)
     public String postLeague(@RequestParam("name") String name) {
         LigueEntity newLeague = new LigueEntity();

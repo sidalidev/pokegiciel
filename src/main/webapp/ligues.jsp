@@ -51,11 +51,6 @@
 </ul>
 <section>
     <h2 class="subtitle">Ligues (votre ligue: <em>${userLeague.name}</em>)</h2>
-    <h4><strong>Ajouter une ligue</strong></h4>
-    <form method="post" action="${contextPath}/ligues/post?${_csrf.parameterName}=${_csrf.token}">
-        <input name="name" class="input" placeholder="Nom de la ligue">
-        <button class="button is-success" type="submit">Ajouter</button>
-    </form>
 
     <h4 class="subtitle">Liste des ligues</h4>
     <div class="content">
