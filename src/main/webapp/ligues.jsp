@@ -16,7 +16,7 @@
 
     <title>Ligues</title>
 
-    <link href="${contextPath}/resources/css/bulma.min.css" rel="stylesheet">
+    <link href="${contextPath}/resources/style/bulma.min.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

@@ -16,7 +16,7 @@
 
     <title>Create an account</title>
 
-    <link href="${contextPath}/resources/css/bulma.min.css" rel="stylesheet">
+    <link href="${contextPath}/resources/style/bulma.min.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -57,7 +57,7 @@
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">S'inscrire</button>
     </form:form>
-    
+
 </div>
 </body>
 </html>
