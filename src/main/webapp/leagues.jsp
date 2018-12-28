@@ -54,7 +54,7 @@
     </div>
 </nav>
 <div class="container">
-    <h2>Ligues (Ligue courante: ${userLeague})</h2>
+    <h2>Ligues (Ligue courante: ${userLeague.name})</h2>
     <div>
         <h4>Ajouter une ligue</h4>
         <form method="post" action="${contextPath}/leagues/post?${_csrf.parameterName}=${_csrf.token}">
@@ -72,6 +72,17 @@
                           action="${contextPath}/leagues/put?${_csrf.parameterName}=${_csrf.token}&id=${league.id}">
                         <a onclick="document.forms['selectLeague${league.id}'].submit()">${league.name}</a>
                     </form>
+                </li>
+            </c:forEach>
+        </ul>
+    </div>
+
+    <div>
+        <h4>Liste des Dresseurs de la ${userLeague.name}</h4>
+        <ul>
+            <c:forEach items="${leagueUsers}" var="user">
+                <li>
+                        ${user.username}
                 </li>
             </c:forEach>
         </ul>

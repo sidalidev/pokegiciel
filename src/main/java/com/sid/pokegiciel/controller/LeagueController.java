@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 
 import static com.sid.pokegiciel.controller.AuthenticationController.getCurrentUsername;
 
@@ -42,7 +43,10 @@ public class LeagueController {
     @RequestMapping(value = "/leagues")
     public String getLeaguesPage(Model model) {
         model.addAttribute("leagues", leagueRepository.findAll());
-        model.addAttribute("userLeague", userRepository.findByUsername(getCurrentUsername()).getLeague().getName());
+        final League userLeague = userRepository.findByUsername(getCurrentUsername()).getLeague();
+        model.addAttribute("userLeague", userLeague);
+        final List<User> leagueUsers = userRepository.findAllByLeague_Id(userLeague.getId());
+        model.addAttribute("leagueUsers", leagueUsers);
         return "leagues";
     }
 
