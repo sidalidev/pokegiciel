@@ -12,4 +12,7 @@
 - HSQL
 
 ## Pour lancer
-```mvn clean spring-boot:run```
+```
+mvn clean spring-boot:run
+```
+Puis: localhost:1234
