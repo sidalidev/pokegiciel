@@ -1,7 +1,7 @@
 package com.example.intergiciel.controller;
 
-import com.example.intergiciel.entity.Caracter;
-import com.example.intergiciel.entity.League;
+import com.example.intergiciel.entity.LigueEntity;
+import com.example.intergiciel.entity.PersonageEntity;
 import com.example.intergiciel.entity.User;
 import com.example.intergiciel.repository.CaracterRepository;
 import com.example.intergiciel.repository.LeagueRepository;
@@ -30,25 +30,25 @@ public class LeagueController {
 
     @PostConstruct
     private void postConstruct() {
-        League newLeague = new League();
-        newLeague.setName("Ligue 1");
+        LigueEntity newLeague = new LigueEntity();
+        newLeague.setName("LigueEntity 1");
         leagueRepository.save(newLeague);
 
-        League newLeague2 = new League();
-        newLeague2.setName("Ligue 2");
+        LigueEntity newLeague2 = new LigueEntity();
+        newLeague2.setName("LigueEntity 2");
         leagueRepository.save(newLeague2);
 
-        League newLeague3 = new League();
-        newLeague3.setName("Ligue 3");
+        LigueEntity newLeague3 = new LigueEntity();
+        newLeague3.setName("LigueEntity 3");
         leagueRepository.save(newLeague3);
     }
 
     @RequestMapping(value = "/leagues")
     public String getLeaguesPage(Model model) {
-        final League userLeague = userRepository.findByUsername(AuthenticationController.getCurrentUsername()).getLeague();
+        final LigueEntity userLeague = userRepository.findByUsername(AuthenticationController.getCurrentUsername()).getLeague();
         final List<User> leagueUsers = userRepository.findAllByLeague_Id(userLeague.getId());
 
-        List<Caracter> caracters = new ArrayList<>();
+        List<PersonageEntity> caracters = new ArrayList<>();
         List<User> leagueUsersWithoutMe = new ArrayList<>();
         for (User user : leagueUsers) {
             if (user.getUsername() != AuthenticationController.getCurrentUsername()) {
@@ -57,8 +57,8 @@ public class LeagueController {
         }
 
         for (User user : leagueUsersWithoutMe) {
-            List<Caracter> leagueCaracters = caracterRepository.findAllByUser_Username(user.getUsername());
-            for (Caracter leagueCaracter : leagueCaracters) {
+            List<PersonageEntity> leagueCaracters = caracterRepository.findAllByUser_Username(user.getUsername());
+            for (PersonageEntity leagueCaracter : leagueCaracters) {
                 caracters.add(leagueCaracter);
             }
         }
@@ -72,7 +72,7 @@ public class LeagueController {
 
     @RequestMapping(value = "/leagues/post", method = RequestMethod.POST)
     public String postLeague(@RequestParam("name") String name) {
-        League newLeague = new League();
+        LigueEntity newLeague = new LigueEntity();
         newLeague.setName(name);
         leagueRepository.save(newLeague);
         return "redirect:/leagues";
@@ -81,7 +81,7 @@ public class LeagueController {
     @RequestMapping(value = "/leagues/put", method = RequestMethod.POST)
     public String putLeague(@RequestParam("id") Long id) {
         final User user = userRepository.findByUsername(AuthenticationController.getCurrentUsername());
-        final League league = leagueRepository.findById(id);
+        final LigueEntity league = leagueRepository.findById(id);
         user.setLeague(league);
         userRepository.save(user);
         return "redirect:/leagues";

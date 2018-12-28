@@ -1,9 +1,9 @@
 package com.example.intergiciel.repository;
 
-import com.example.intergiciel.entity.Fight;
+import com.example.intergiciel.entity.CombatEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface FightRepository extends JpaRepository<Fight, Long> {
+public interface FightRepository extends JpaRepository<CombatEntity, Long> {
 }

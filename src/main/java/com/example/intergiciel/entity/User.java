@@ -32,13 +32,13 @@ public class User {
     @JoinColumn(name = "league_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
-    private League league;
+    private LigueEntity league;
 
-    public League getLeague() {
+    public LigueEntity getLeague() {
         return league;
     }
 
-    public void setLeague(League league) {
+    public void setLeague(LigueEntity league) {
         this.league = league;
     }
 

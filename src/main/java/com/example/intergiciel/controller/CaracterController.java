@@ -1,7 +1,7 @@
 package com.example.intergiciel.controller;
 
 import com.example.intergiciel.auth.service.UserService;
-import com.example.intergiciel.entity.Caracter;
+import com.example.intergiciel.entity.PersonageEntity;
 import com.example.intergiciel.entity.User;
 import com.example.intergiciel.repository.CaracterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ public class CaracterController {
         if (currentUserPoints > points) {
             currentUser.setPoints(currentUserPoints - points);
             userService.save(currentUser);
-            Caracter caracter = new Caracter();
+            PersonageEntity caracter = new PersonageEntity();
             caracter.setName(name);
             caracter.setPoints(points);
             caracter.setUser(userService.findByUsername(AuthenticationController.getCurrentUsername()));
@@ -50,13 +50,13 @@ public class CaracterController {
 
     @RequestMapping(value = "/caracters/edit", method = RequestMethod.GET)
     public String editCaracter(Model model, @RequestParam("caracterId") Long id) {
-        Caracter caracter = caracterRepository.findById(id);
+        PersonageEntity caracter = caracterRepository.findById(id);
         model.addAttribute("caracter", caracter);
         return "caracters-edit";
     }
 
     @RequestMapping(value = "/caracter/put", method = RequestMethod.POST)
-    public String putCaracter(@ModelAttribute("caracterForm") Caracter editedCaracter) {
+    public String putCaracter(@ModelAttribute("caracterForm") PersonageEntity editedCaracter) {
         User currentUser = userService.findByUsername(AuthenticationController.getCurrentUsername());
         int currentUserPoints = currentUser.getPoints();
         int caracterPoints = editedCaracter.getPoints();
@@ -68,7 +68,7 @@ public class CaracterController {
                 currentUser.setPoints(currentUserPoints - (caracterPoints - oldCaracterPoints));
             }
             userService.save(currentUser);
-            Caracter caracterToEdit = caracterRepository.findById(editedCaracter.getId());
+            PersonageEntity caracterToEdit = caracterRepository.findById(editedCaracter.getId());
             caracterToEdit.setName(editedCaracter.getName());
             caracterToEdit.setPoints(editedCaracter.getPoints());
             caracterRepository.save(caracterToEdit);
@@ -78,7 +78,7 @@ public class CaracterController {
     }
 
     @RequestMapping(value = "/caracter/delete", method = RequestMethod.POST)
-    public String deleteCaracter(@ModelAttribute("caracterForm") Caracter caracter) {
+    public String deleteCaracter(@ModelAttribute("caracterForm") PersonageEntity caracter) {
         User currentUser = userService.findByUsername(AuthenticationController.getCurrentUsername());
         int currentUserPoints = currentUser.getPoints();
         int caracterPoints = caracterRepository.findById(caracter.getId()).getPoints();

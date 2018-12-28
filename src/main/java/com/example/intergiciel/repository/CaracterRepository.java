@@ -1,6 +1,6 @@
 package com.example.intergiciel.repository;
 
-import com.example.intergiciel.entity.Caracter;
+import com.example.intergiciel.entity.PersonageEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,8 +8,8 @@ import java.util.List;
 
 
 @Repository
-public interface CaracterRepository extends JpaRepository<Caracter, Long> {
-    List<Caracter> findAllByUser_Username(String username);
+public interface CaracterRepository extends JpaRepository<PersonageEntity, Long> {
+    List<PersonageEntity> findAllByUser_Username(String username);
 
-    Caracter findById(Long id);
+    PersonageEntity findById(Long id);
 }

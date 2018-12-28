@@ -1,7 +1,7 @@
 package com.example.intergiciel.controller;
 
-import com.example.intergiciel.entity.Caracter;
-import com.example.intergiciel.entity.Fight;
+import com.example.intergiciel.entity.CombatEntity;
+import com.example.intergiciel.entity.PersonageEntity;
 import com.example.intergiciel.repository.CaracterRepository;
 import com.example.intergiciel.repository.FightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +28,10 @@ public class FightController {
 
     @RequestMapping(value = "/fight/simulation", method = RequestMethod.GET)
     public String fightSumulation(Model model, @RequestParam("caracterId") Long caracterId, @RequestParam("opponentId") Long opponentId) {
-        Fight fight = new Fight();
-        final Caracter opponentOne = caracterRepository.findById(opponentId);
-        final Caracter opponentTwo = caracterRepository.findById(caracterId);
-        final Caracter winner;
+        CombatEntity fight = new CombatEntity();
+        final PersonageEntity opponentOne = caracterRepository.findById(opponentId);
+        final PersonageEntity opponentTwo = caracterRepository.findById(caracterId);
+        final PersonageEntity winner;
         if (opponentOne.getPoints() > opponentTwo.getPoints()) {
             winner = opponentOne;
         } else {

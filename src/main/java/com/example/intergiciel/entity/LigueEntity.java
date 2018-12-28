@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "leagues")
-public class League {
+public class LigueEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
