@@ -30,13 +30,12 @@
 <div class="container">
     <h2>Historique des combats</h2>
     <ul class="list-group">
-        <c:forEach items="${fights}" var="fight">
+        <c:forEach items="${combats}" var="combat">
             <li class="list-group-item">
-                <em>${fight.opponentOne} VS ${fight.opponentOne}</em>
-                <span>Gagnant: ${fight.winner}</span>
+                <em>${combat.opponentOne} VS ${combat.opponentOne}</em>
+                <span>Gagnant: ${combat.winner}</span>
             </li>
         </c:forEach>
     </ul>
 </div>
 </body>
-</html>

@@ -44,7 +44,7 @@ public class LeagueController {
         leagueRepository.save(newLeague3);
     }
 
-    @RequestMapping(value = "/leagues")
+    @RequestMapping(value = "/ligues")
     public String getLeaguesPage(Model model) {
         final LigueEntity userLeague = userRepository.findByUsername(AuthenticationController.getCurrentUsername()).getLeague();
         final List<User> leagueUsers = userRepository.findAllByLeague_Id(userLeague.getId());
@@ -63,28 +63,28 @@ public class LeagueController {
                 caracters.add(leagueCaracter);
             }
         }
-        model.addAttribute("leagues", leagueRepository.findAll());
+        model.addAttribute("ligues", leagueRepository.findAll());
         model.addAttribute("userLeague", userLeague);
         model.addAttribute("leagueUsers", leagueUsersWithoutMe);
         model.addAttribute("caracters", caracters);
 
-        return "leagues";
+        return "ligues";
     }
 
-    @RequestMapping(value = "/leagues/post", method = RequestMethod.POST)
+    @RequestMapping(value = "/ligues/post", method = RequestMethod.POST)
     public String postLeague(@RequestParam("name") String name) {
         LigueEntity newLeague = new LigueEntity();
         newLeague.setName(name);
         leagueRepository.save(newLeague);
-        return "redirect:/leagues";
+        return "redirect:/ligues";
     }
 
-    @RequestMapping(value = "/leagues/put", method = RequestMethod.POST)
+    @RequestMapping(value = "/ligues/put", method = RequestMethod.POST)
     public String putLeague(@RequestParam("id") Long id) {
         final User user = userRepository.findByUsername(AuthenticationController.getCurrentUsername());
         final LigueEntity league = leagueRepository.findById(id);
         user.setLeague(league);
         userRepository.save(user);
-        return "redirect:/leagues";
+        return "redirect:/ligues";
     }
 }

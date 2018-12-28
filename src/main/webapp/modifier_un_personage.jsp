@@ -32,13 +32,13 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="${contextPath}/home">Personages<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="${contextPath}/accueil">Personages<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="${contextPath}/leagues">Ligues</a>
+                <a class="nav-link" href="${contextPath}/ligues">Ligues</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="${contextPath}/fight/history">Historique</a>
+                <a class="nav-link" href="${contextPath}/combat/history">Historique</a>
             </li>
             <li class="nav-item">
                 <form id="logoutForm" method="POST" action="${contextPath}/logout">

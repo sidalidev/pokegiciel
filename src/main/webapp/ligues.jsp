@@ -1,5 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
@@ -10,10 +11,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="Home">
+    <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Accueil</title>
+    <title>Ligues</title>
 
     <link href="${contextPath}/resources/css/bulma.min.css" rel="stylesheet">
 
@@ -23,6 +24,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
+
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Pokegiciel</a>
@@ -32,14 +34,14 @@
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
         <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="${contextPath}/accueil">Personages</a>
+            </li>
             <li class="nav-item active">
-                <a class="nav-link" href="${contextPath}/home">Personages<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="${contextPath}/ligues">Ligues<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="${contextPath}/leagues">Ligues</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="${contextPath}/fight/history">Historique</a>
+                <a class="nav-link" href="${contextPath}/combat/history">Historique</a>
             </li>
             <li class="nav-item">
                 <form id="logoutForm" method="POST" action="${contextPath}/logout">
@@ -51,31 +53,55 @@
     </div>
 </nav>
 <div class="container">
-    <h2>Accueil</h2>
-    <c:if test="${pageContext.request.userPrincipal.name != null}">
-        <h2>Bienvenue <em class="text-info">${pageContext.request.userPrincipal.name}</em></h2>
-    </c:if>
-    <h3>Points: ${points}</h3>
-    <div class="container">
-        <h4>Ajouter un personnage</h4>
-        <form method="post" action="/caracters/post?${_csrf.parameterName}=${_csrf.token}">
-            <input class="form-control" type="text" required name="name" placeholder="Nom du personnage">
-            <input class="form-control" type="number" required name="points" placeholder="Points attribues">
-            <button type="submit" class="btn btn-success">Ajouter</button>
+    <h2>Ligues (votre ligue: <em>${userLeague.name}</em>)</h2>
+    <div>
+        <h4>Ajouter une ligue</h4>
+        <form method="post" action="${contextPath}/ligues/post?${_csrf.parameterName}=${_csrf.token}">
+            <input name="name" class="form-control" placeholder="Nom de la ligue">
+            <button class="btn btn-success" type="submit">Ajouter</button>
         </form>
     </div>
 
-    <div class="container">
-        <h4>Liste des personnages</h4>
+    <div>
+        <h4>Liste des ligues</h4>
         <ul class="list-group">
-            <c:forEach items="${caracters}" var="caracter">
-                <li class="list-group-item">${caracter.name}
-                    <em>Points: ${caracter.points}</em>
-                    <a class="btn btn-info" href="/caracters/edit?caracterId=${caracter.id}">Modifier</a>
+            <c:forEach items="${ligues}" var="league">
+                <li class="list-group-item">
+                    <form id="selectLeague${league.id}" method="post"
+                          action="${contextPath}/ligues/put?${_csrf.parameterName}=${_csrf.token}&id=${league.id}">
+                        <a class="btn btn-info"
+                           onclick="document.forms['selectLeague${league.id}'].submit()"
+                           style="color: white">${league.name}</a>
+                    </form>
                 </li>
             </c:forEach>
         </ul>
     </div>
+
+
+    <div>
+        <h4>Liste des Personages de la ligue <em>${userLeague.name}</em>:</h4>
+        <ul class="list-group">
+            <c:forEach items="${caracters}" var="caracter">
+                <li class="list-group-item">
+                        ${caracter.name}
+                    <a href="/combat?opponentId=${caracter.id}" class="btn btn-danger">Combattre</a>
+                </li>
+            </c:forEach>
+        </ul>
+    </div>
+
+    <div>
+        <h4>Liste des Dresseurs de la ligue <em>${userLeague.name}</em>:</h4>
+        <ul class="list-group">
+            <c:forEach items="${leagueUsers}" var="user">
+                <li class="list-group-item">
+                        ${user.username}
+                </li>
+            </c:forEach>
+        </ul>
+    </div>
+
 
 </div>
 </body>

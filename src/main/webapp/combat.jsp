@@ -35,13 +35,13 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="${contextPath}/home">Personages</a>
+                <a class="nav-link" href="${contextPath}/accueil">Personages</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="${contextPath}/leagues">Ligues<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="${contextPath}/ligues">Ligues<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="${contextPath}/fight/history">Historique</a>
+                <a class="nav-link" href="${contextPath}/combat/history">Historique</a>
             </li>
             <li class="nav-item">
                 <form id="logoutForm" method="POST" action="${contextPath}/logout">
@@ -53,8 +53,17 @@
     </div>
 </nav>
 <div class="container">
-    <h2><em>${caracter} VS ${opponent}</em></h2>
-    <h4>Le gagnant est <em>${winner}</em>.</h4>
+    <h2>Combat <em>VS ${opponent.name}</em></h2>
+    <p>Selectionner votre champion:</p>
+    <ul class="list-group">
+        <c:forEach items="${caracters}" var="caracter">
+            <li class="list-group-item">${caracter.name}
+                <a href="/combat/simulation?caracterId=${caracter.id}&opponentId=${opponent.id}"
+                   class="btn btn-warning">Selectionner</a>
+            </li>
+        </c:forEach>
+    </ul>
+
 </div>
 </body>
 </html>

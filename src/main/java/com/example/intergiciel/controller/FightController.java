@@ -18,18 +18,18 @@ public class FightController {
     CaracterRepository caracterRepository;
 
     @Autowired
-    FightRepository fightRepository;
+    FightRepository combatRepository;
 
-    @RequestMapping(value = "/fight", method = RequestMethod.GET)
-    public String fight(Model model, @RequestParam("opponentId") Long opponentId) {
+    @RequestMapping(value = "/combat", method = RequestMethod.GET)
+    public String combat(Model model, @RequestParam("opponentId") Long opponentId) {
         model.addAttribute("opponent", caracterRepository.findById(opponentId));
         model.addAttribute("caracters", caracterRepository.findAllByUser_Username(AuthenticationController.getCurrentUsername()));
-        return "fight";
+        return "combat";
     }
 
-    @RequestMapping(value = "/fight/simulation", method = RequestMethod.GET)
-    public String fightSumulation(Model model, @RequestParam("caracterId") Long caracterId, @RequestParam("opponentId") Long opponentId) {
-        CombatEntity fight = new CombatEntity();
+    @RequestMapping(value = "/combat/simulation", method = RequestMethod.GET)
+    public String combatSumulation(Model model, @RequestParam("caracterId") Long caracterId, @RequestParam("opponentId") Long opponentId) {
+        CombatEntity combat = new CombatEntity();
         final PersonageEntity opponentOne = caracterRepository.findById(opponentId);
         final PersonageEntity opponentTwo = caracterRepository.findById(caracterId);
         final PersonageEntity winner;
@@ -39,21 +39,21 @@ public class FightController {
             winner = opponentTwo;
         }
 
-        fight.setOpponentOne(opponentOne.getName());
-        fight.setOpponentTwo(opponentTwo.getName());
-        fight.setWinner(winner.getName());
+        combat.setOpponentOne(opponentOne.getName());
+        combat.setOpponentTwo(opponentTwo.getName());
+        combat.setWinner(winner.getName());
 
-        model.addAttribute("opponent", fight.getOpponentOne());
-        model.addAttribute("caracter", fight.getOpponentTwo());
-        model.addAttribute("winner", fight.getWinner());
+        model.addAttribute("opponent", combat.getOpponentOne());
+        model.addAttribute("caracter", combat.getOpponentTwo());
+        model.addAttribute("winner", combat.getWinner());
 
-        fightRepository.save(fight);
-        return "fight-simulation";
+        combatRepository.save(combat);
+        return "simuler_un_combat";
     }
 
-    @RequestMapping(value = "/fight/history", method = RequestMethod.GET)
-    public String fightHistory(Model model) {
-        model.addAttribute("fights", fightRepository.findAll());
-        return "fight-history";
+    @RequestMapping(value = "/combat/history", method = RequestMethod.GET)
+    public String combatHistory(Model model) {
+        model.addAttribute("combats", combatRepository.findAll());
+        return "historique_des_combats";
     }
 }

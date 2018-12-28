@@ -58,7 +58,7 @@ public class AuthenticationController {
         userService.save(userForm);
 
         securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
-        return "redirect:/home";
+        return "redirect:/accueil";
     }
 
     @RequestMapping(value = "/connexion", method = RequestMethod.GET)

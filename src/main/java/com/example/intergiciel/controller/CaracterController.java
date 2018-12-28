@@ -24,12 +24,12 @@ public class CaracterController {
     private UserService userService;
 
 
-    @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
-    public String home(Model model) {
+    @RequestMapping(value = {"/", "/accueil"}, method = RequestMethod.GET)
+    public String accueil(Model model) {
         model.addAttribute("caracters", caracterRepository.findAllByUser_Username(AuthenticationController.getCurrentUsername()));
         model.addAttribute("points", userService.findByUsername(AuthenticationController.getCurrentUsername()).getPoints());
 
-        return "home";
+        return "accueil";
     }
 
 
@@ -46,14 +46,14 @@ public class CaracterController {
             caracter.setUser(userService.findByUsername(AuthenticationController.getCurrentUsername()));
             caracterRepository.save(caracter);
         }
-        return "redirect:/home";
+        return "redirect:/accueil";
     }
 
     @RequestMapping(value = "/caracters/edit", method = RequestMethod.GET)
     public String editCaracter(Model model, @RequestParam("caracterId") Long id) {
         PersonageEntity caracter = caracterRepository.findById(id);
         model.addAttribute("caracter", caracter);
-        return "caracters-edit";
+        return "modifier_un_personage";
     }
 
     @RequestMapping(value = "/caracter/put", method = RequestMethod.POST)
@@ -73,9 +73,9 @@ public class CaracterController {
             caracterToEdit.setName(editedCaracter.getName());
             caracterToEdit.setPoints(editedCaracter.getPoints());
             caracterRepository.save(caracterToEdit);
-            return "redirect:/home";
+            return "redirect:/accueil";
         }
-        return "redirect:/caracters-edit";
+        return "redirect:/modifier_un_personage";
     }
 
     @RequestMapping(value = "/caracter/delete", method = RequestMethod.POST)
@@ -86,6 +86,6 @@ public class CaracterController {
         currentUser.setPoints(currentUserPoints + caracterPoints);
         userService.save(currentUser);
         caracterRepository.delete(caracter.getId());
-        return "redirect:/home";
+        return "redirect:/accueil";
     }
 }
