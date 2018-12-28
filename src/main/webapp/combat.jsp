@@ -31,13 +31,13 @@
         <a class="nav-link" href="${contextPath}/accueil">Personages</a>
     </li>
     <li>
+        <a class="nav-link" href="${contextPath}/ajouter_un_personage">Ajouter un personage</a>
+    </li>
+    <li>
         <a class="nav-link" href="${contextPath}/ligues">Ligues</a>
     </li>
     <li>
         <a class="nav-link" href="${contextPath}/combat/history">Historique</a>
-    </li>
-    <li>
-        <a class="nav-link" href="${contextPath}/ajouter_un_personage">Ajouter un personage</a>
     </li>
     <li>
         <form id="logoutForm" method="POST" action="${contextPath}/logout">
