@@ -20,12 +20,6 @@ public class CombatController {
     @Autowired
     CombatRepository combatRepository;
 
-    @RequestMapping(value = "/combat", method = RequestMethod.GET)
-    public String combat(Model model, @RequestParam("opponentId") Long opponentId) {
-        model.addAttribute("opponent", personageRepository.findById(opponentId));
-        model.addAttribute("caracters", personageRepository.findAllByUser_Username(AuthenticationController.getCurrentUsername()));
-        return "combat";
-    }
 
     @RequestMapping(value = "/combat/simulation", method = RequestMethod.GET)
     public String combatSumulation(Model model, @RequestParam("caracterId") Long caracterId, @RequestParam("opponentId") Long opponentId) {
@@ -39,16 +33,23 @@ public class CombatController {
             winner = opponentTwo;
         }
 
-        combat.setOpponentOne(opponentOne.getName());
-        combat.setOpponentTwo(opponentTwo.getName());
-        combat.setWinner(winner.getName());
+        combat.setAdversaire1(opponentOne.getName());
+        combat.setAdversaire2(opponentTwo.getName());
+        combat.setVainqueur(winner.getName());
 
-        model.addAttribute("opponent", combat.getOpponentOne());
-        model.addAttribute("caracter", combat.getOpponentTwo());
-        model.addAttribute("winner", combat.getWinner());
+        model.addAttribute("opponent", combat.getAdversaire1());
+        model.addAttribute("caracter", combat.getAdversaire2());
+        model.addAttribute("winner", combat.getVainqueur());
 
         combatRepository.save(combat);
         return "simuler_un_combat";
+    }
+
+    @RequestMapping(value = "/combat", method = RequestMethod.GET)
+    public String combat(Model model, @RequestParam("opponentId") Long opponentId) {
+        model.addAttribute("opponent", personageRepository.findById(opponentId));
+        model.addAttribute("caracters", personageRepository.findAllByUser_Username(AuthenticationController.getCurrentUsername()));
+        return "combat";
     }
 
     @RequestMapping(value = "/combat/history", method = RequestMethod.GET)

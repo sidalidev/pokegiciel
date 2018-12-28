@@ -56,8 +56,8 @@
         <ul>
             <c:forEach items="${combats}" var="combat">
                 <li>
-                    <strong>${combat.opponentOne} - ${combat.opponentTwo} </strong><br>
-                    Gagnant: ${combat.winner}
+                    <strong>${combat.adversaire1} - ${combat.adversaire2} </strong><br>
+                    Gagnant: ${combat.vainqueur}
                 </li>
             </c:forEach>
         </ul>

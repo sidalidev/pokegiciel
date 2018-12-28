@@ -12,9 +12,9 @@ public class CombatEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String opponentOne;
-    private String opponentTwo;
-    private String winner;
+    private String adversaire1;
+    private String adversaire2;
+    private String vainqueur;
 
     public Long getId() {
         return id;
@@ -24,27 +24,27 @@ public class CombatEntity {
         this.id = id;
     }
 
-    public String getOpponentOne() {
-        return opponentOne;
+    public String getAdversaire1() {
+        return adversaire1;
     }
 
-    public void setOpponentOne(String opponentOne) {
-        this.opponentOne = opponentOne;
+    public void setAdversaire1(String adversaire1) {
+        this.adversaire1 = adversaire1;
     }
 
-    public String getOpponentTwo() {
-        return opponentTwo;
+    public String getAdversaire2() {
+        return adversaire2;
     }
 
-    public void setOpponentTwo(String opponentTwo) {
-        this.opponentTwo = opponentTwo;
+    public void setAdversaire2(String adversaire2) {
+        this.adversaire2 = adversaire2;
     }
 
-    public String getWinner() {
-        return winner;
+    public String getVainqueur() {
+        return vainqueur;
     }
 
-    public void setWinner(String winner) {
-        this.winner = winner;
+    public void setVainqueur(String vainqueur) {
+        this.vainqueur = vainqueur;
     }
 }
