@@ -70,8 +70,23 @@
                 <li class="list-group-item">
                     <form id="selectLeague${league.id}" method="post"
                           action="${contextPath}/leagues/put?${_csrf.parameterName}=${_csrf.token}&id=${league.id}">
-                        <a onclick="document.forms['selectLeague${league.id}'].submit()">${league.name}</a>
+                        <a class="btn btn-info"
+                           onclick="document.forms['selectLeague${league.id}'].submit()"
+                           style="color: white">${league.name}</a>
                     </form>
+                </li>
+            </c:forEach>
+        </ul>
+    </div>
+
+
+    <div>
+        <h4>Liste des Personages de la ligue <em>${userLeague.name}</em>:</h4>
+        <ul class="list-group">
+            <c:forEach items="${caracters}" var="caracter">
+                <li class="list-group-item">
+                        ${caracter.name}
+                    <a href="/fight?opponentId=${caracter.id}" class="btn btn-danger">Combattre</a>
                 </li>
             </c:forEach>
         </ul>
@@ -89,17 +104,6 @@
         </ul>
     </div>
 
-    <div>
-        <h4>Liste des Personages de la ligue <em>${userLeague.name}</em>:</h4>
-        <ul class="list-group">
-            <c:forEach items="${caracters}" var="caracter">
-                <li class="list-group-item">
-                        ${caracter.name}
-                    <a href="/fight?opponentId=${caracter.id}" class="btn btn-danger">Combattre</a>
-                </li>
-            </c:forEach>
-        </ul>
-    </div>
 
 </div>
 <!-- /container -->
